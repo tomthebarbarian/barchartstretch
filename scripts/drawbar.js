@@ -63,6 +63,7 @@ let bars = {
 $(document).ready(function(){
 
   // jQuery methods go here...
+  $("#barchat")
 
 });
 

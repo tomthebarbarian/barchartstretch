@@ -1,0 +1,19 @@
+.important {
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+.blue {
+  color: blue;
+}
+
+.red {
+  color: red
+}
+.body {
+min-height: 100vh;
+background-color: var(--color-bg);
+color: var(--color-text);
+overflow-wrap: break-word;
+transition: background 500ms ease-in-out,color 200ms ease;
+}

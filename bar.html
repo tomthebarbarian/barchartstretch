@@ -3,23 +3,27 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="scripts/drawbar.js"></script>
-
+    <style src = styles/barstyle.css></style>
   </head>
   <body>
-    <header>This is the main title
 
-    </header>
-    <section id = 'barchart'>
-      <header>This is the main title of the barchart</header>
-      <section>This is the main graph section</section>
-      <aside>this would be the y axis</aside>
-      here is where the graph with it's own title would go
-      <script>
-        let data = [0,1,2,3,4,5]
-        drawBarChart(data, options, element)
+    <main>
+      <header>This is the main title
 
-        // we're going to make doms and backgrounds to make our chart
-      </script>
-    </section>
-  </body>
+      </header>
+      <section id = 'barchart'>
+        <header id = 'tbltitle'>This is the main title of the barchart</header>
+        <section id = 'mainbar'>This is the main graph section</section>
+        <aside class = 'axis' id = 'yaxis'>This would be the y axis</aside>
+        <footer class = 'axis' id = 'xaxis'>This would be the x axis</footer>
+        here is where the graph with it's own title would go
+        <script id = 'barscript'>
+          let data = [0,1,2,3,4,5]
+          drawBarChart(data, options, '#barchart')
+
+          // we're going to make doms and backgrounds to make our chart
+        </script>
+      </section>
+    </main>
+    </body>
 </html>
