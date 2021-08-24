@@ -60,6 +60,12 @@ let bars = {
   height:5// length of input
 };
 
+$(document).ready(function(){
+
+  // jQuery methods go here...
+
+});
+
 
 const drawBarChart = (data,  options = {},  element = section) => {
   if (options) {
