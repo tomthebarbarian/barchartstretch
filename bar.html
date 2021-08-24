@@ -3,7 +3,6 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="scripts/drawbar.js"></script>
-    import * as data from "/data/exampledat.json";
 
   </head>
   <body>
@@ -13,6 +12,7 @@
     <section>
       here is where the graph with it's own title would go
       <script>
+        let data = [0,1,2,3,4,5]
         drawBarChart(data, options, element);
       </script>
     </section>
