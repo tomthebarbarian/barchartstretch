@@ -45,22 +45,26 @@ const singlebar = [1,2,3,4,5]
 let bars = {
   title:'Title',
   tsize: 40,
-  colour:'red',
-  size:30,
-  labcolour: 'black',
-  labsize: 15,
+  options: {
+    colour:'red',
+    size:30,
+    labcolour: 'black',
+    labsize: 15,
+  },
   xlab: 'xvalues',
   ylab: 'yvalues',
+
+  data: singlebar,
   spacing: 1, // the bar scale
   width:5, //max/min of input
   height:5// length of input
 };
 
 
-const drawBarChart = (data, options, element) => {
+const drawBarChart = (data,  options = {},  element = section) => {
   if (options) {
     for (let elem of options){
-      bars[elem] = options[elem]
+      bars.options = options[elem]
     }
   }
 };
