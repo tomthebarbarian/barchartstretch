@@ -11,7 +11,7 @@
 .red {
   color: red
 }
-.body {
+body {
   min-height: 100vh;
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -33,7 +33,44 @@
 }
 
 #barchart {
+  position: absolute;
   width: 75%;
   min-height: 80%;
   background-color: rgb(223, 134, 134);
+}
+
+#mainbar {
+  margin-left: 10%;
+  position: relative;
+  height: 80%;
+  width: 90%;
+  background-color: rgba(80, 72, 72, 0.63);
+}
+#tbltitle {
+  height: 10%;
+  width: 100%;
+  background-color: rgb(140, 230, 122)
+}
+
+#xaxis {
+  position: relative;
+  margin-left: 10%;
+  height: 10%;
+  width: 90%;
+  background-color: rgb(122, 226, 230)
+
+}
+
+#yaxis {
+  height: 80%;
+  width: 10%;
+  background-color: rgb(236, 152, 229)
+}
+
+.axis{
+  font-weight: 600;
+}
+
+main {
+  text-align:center
 }
