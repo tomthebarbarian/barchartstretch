@@ -66,9 +66,14 @@ li{
   margin: 1%;
 }
 
-#array-elem-n {
-  width: 50%;
+.notmaxbar {
+  width: 100%* currvalue / maxvalue;
 }
+
+.maxbar {
+  width: 100%
+}
+
 
 #xaxis {
   position: relative;
