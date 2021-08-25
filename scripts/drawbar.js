@@ -72,6 +72,8 @@ const genlistelems = (data) => {
   let maxvalue = Math.max(data)
   let currvalue = 0
 
+  //Set maxbar value, take it out, then set all other bars' value relative to max
+
   for (let elem of data){
 
   }
