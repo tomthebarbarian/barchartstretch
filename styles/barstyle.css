@@ -32,13 +32,15 @@ body {
   counter-reset: ol-step-counter;
 }
 
+/* This is the container for everything*/
 #barchart {
   position: absolute;
   width: 75%;
-  min-height: 80%;
+  height: 80%;
   background-color: rgb(223, 134, 134);
 }
 
+/* This is the container for barsonly*/
 #mainbar {
   margin-left: 10%;
   position: relative;
@@ -50,6 +52,10 @@ body {
   height: 10%;
   width: 100%;
   background-color: rgb(140, 230, 122)
+}
+
+li{
+  background-color: rgb(201, 230, 122)
 }
 
 #xaxis {
