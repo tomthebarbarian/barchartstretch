@@ -54,8 +54,15 @@ body {
   background-color: rgb(140, 230, 122)
 }
 
+ul{
+  list-style-type:none;
+  margin: 2%;
+  padding: 0;
+}
+
 li{
-  background-color: rgb(201, 230, 122)
+  background-color: rgb(201, 230, 122);
+  margin: 1%;
 }
 
 #xaxis {
