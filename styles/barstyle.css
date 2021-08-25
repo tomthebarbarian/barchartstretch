@@ -62,7 +62,12 @@ ul{
 
 li{
   background-color: rgb(201, 230, 122);
+  /*li margin is bar spacing*/
   margin: 1%;
+}
+
+#array-elem-n {
+  width: 50%;
 }
 
 #xaxis {

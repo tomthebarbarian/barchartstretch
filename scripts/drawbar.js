@@ -68,11 +68,27 @@ $(document).ready(function(){
 });
 
 
+const genlistelems = (data) => {
+  let maxvalue = Math.max(data)
+  let currvalue = 0
+
+  for (let elem of data){
+
+  }
+  let percofmax = 0;
+  let deflistelem = `#array-elem-${currlistelem} {\n
+    width: ${percofmax}%;
+  }`
+  percofmax = value / maxvalue
+}
+
+
 const drawBarChart = (data,  options = {},  element = section) => {
   if (options) {
     for (let elem of options){
       bars.options = options[elem]
     }
+
   }
 };
 
