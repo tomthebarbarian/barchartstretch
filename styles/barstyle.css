@@ -34,14 +34,19 @@ body {
 
 /* This is the container for everything*/
 #barchart {
-  position: relative;
+  position: absolute;
   width: 75%;
   height: 80%;
   background-color: rgb(223, 134, 134);
+  border:10px;
+  outline-style: solid;
+  outline-width: thin;
+  outline-color: black;
 }
 
 /* This is the container for barsonly*/
 #mainbar {
+  top: 10%;
   margin-left: 10%;
   position: absolute;
   height: 80%;
@@ -67,6 +72,7 @@ li{
   margin: 1%;
 }
 
+/*
 .notmaxbar {
   width: 100%* currvalue / maxvalue;
 }
@@ -74,18 +80,20 @@ li{
 .maxbar {
   width: 100%
 }
-
+*/
 
 #xaxis {
   position: absolute;
   margin-left: 10%;
   height: 10%;
+  top: 90%;
   width: 90%;
   background-color: rgb(122, 226, 230)
 
 }
 
 #yaxis {
+  top: 10%;
   position: absolute;
   height: 80%;
   width: 10%;
