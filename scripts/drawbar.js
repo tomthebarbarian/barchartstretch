@@ -94,7 +94,19 @@ const addBars = (section) => {
   `)
 }
 
+// function addBarElem adds a list item to a list section
+const addBarElem = (section, dataArray, height) => {
 
+  for (let i = 0; i < dataArray.length; i++){
+    $(section).append(`
+    <li id = 'currbar${i}'>${dataArray[i]}</li>
+    `)
+
+    // set width in list
+  }
+  // set all bar heights of list items
+  $(section+' li').css(`height: ${height};`)
+}
 
 // Get max of elem list
 const genlistelems = (data) => {
@@ -160,14 +172,16 @@ const mergeSort = (workarry) => {
 }
 
 // Default
-const drawBarChart = (data,  options = {},  element = section) => {
+const drawBarChart = (data,  options = {},  element) => {
   let ordDat = mergeSort(data)
 
   // height calculator
-let listlen = data.length
+  let listlen = data.length
 
-// This is about how high the bars should be
-let maxHeight = (100 +($("li").css("margin") * listlen + 1)) / listlen
+  // This is about how high the bars should be
+  let barHeight = (100 +($("li").css("margin") * listlen + 1)) / listlen
+  addBars(element)
+  addBarElem('#bars', ordDat, barHeight)
 
   if (options) {
     for (let elem of options){
