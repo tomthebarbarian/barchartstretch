@@ -39,42 +39,60 @@ Customizable label colours
 */
 
 //Always check to see if the document is ready
-$(document).ready(function(){
-  $('.maxbar').width()
-});
 
+// event listeners aways need an own function wrapping the
+// other processes
+function changeText(selector){
+  let tempstore = $(selector).text()
+  setTimeout(() => {
+    $(selector).text(tempstore)}
+    , 2000)
+  $(selector).text("I've changed the text, dw it'll return in 2")
+
+}
 // Dom manipulation.
 
 
-// Do on event, submit? Probably wanna make a function first.
-
-//Horizontally
+// Constants
+const barChartDiv =  "#mainbar"
+const allBars = '#bars'
 const singlebar = [1,2,3,4,5]
 
-let bars = {
-  title:'Title',
-  tsize: 40,
-  options: {
-    colour:'red',
-    size:30,
-    labcolour: 'black',
-    labsize: 15,
-  },
-  xlab: 'xvalues',
-  ylab: 'yvalues',
+// Do on event, submit? Probably wanna make a function first.
 
-  data: singlebar,
-  spacing: 1, // the bar scale
-  width:5, //max/min of input
-  height:5// length of input
-};
+$(document).ready(() => {
+  $("#btn1").click(() => {
+    //changeText('.maxbar')
+    removeBars(allBars)
+    setTimeout(() => {
+      addBars(barChartDiv)
+    }, 1000)
+  })
+  /*$("#btn1").click(function(){
+    $('.maxbar').text("I've changed the text")
+    //setTimeout($('.maxbar').text("Why so quick"), 5000)
+  })*/
+  //new fn
+});
 
 
+
+//Horizontally
 
   // jQuery methods go here...
-  $("#barchat")
+// function removebars removes all elements
+// from the input section
+const removeBars = (section) => {
+  $(section).remove();
+}
 
-
+// function addBars adds an emptyunordered list to section
+// with id = 'bars'
+const addBars = (section) => {
+  $(section).append(`
+  <ul id = 'bars'> This is the main graph section </ul>
+  `)
+}
 
 
 const genlistelems = (data) => {
@@ -94,7 +112,7 @@ const genlistelems = (data) => {
   percofmax = value / maxvalue
 }
 
-
+// Default
 const drawBarChart = (data,  options = {},  element = section) => {
   if (options) {
     for (let elem of options){

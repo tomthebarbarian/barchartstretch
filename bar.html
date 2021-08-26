@@ -7,15 +7,6 @@
     <script id = 'barscript'>
       let data = [0,1,2,3,4,5]
       //drawBarChart(data, options, '#barchart')
-    $(document).ready(function(){
-      $("#btn1").click(function(){
-        //alert("Text: " + $(".maxbar").text());
-        $(".maxbar").text("I've changed the values")
-        console.log($(".maxbar").width())
-        $(".maxbar").css({"width":'50%'})
-      });
-      //new fn
-    });
       // we're going to make doms and backgrounds to make our chart
     </script>
   </head>
@@ -24,15 +15,15 @@
     <main id = 'main-conent'>
       <header>
         <h1>This is the main title</h1>
-        <button id="btn1">Show Text</button>
+        <button id="btn1">this is btn1</button>
       </header>
       <section id = 'barchart'>
         <header id = 'tbltitle'>
           <h2>This is the main title of the barchart</h2>
         </header>
         <section id = 'mainbar'>
-          <h3 id = 'barplacehold'>This is the main graph section</h3>
-          <ul>
+          <!--<h3 id = 'barplacehold'>This is the main graph section</h3>-->
+          <ul id = 'bars'>
             <!--All these should be length based on max-->
             <!--max bar, margin right and left-->
             <li class = 'maxbar'>this is the max bar</li>
@@ -40,7 +31,7 @@
             <li>element 2</li>
             <li>element 3</li>
             <li id = 'array-elem-n'>there doesn't need to be text here</li>
-          </ol>
+          </ul>
         </section>
         <aside class = 'axis' id = 'yaxis'>
           <h4>This would be the y axis</h4>
