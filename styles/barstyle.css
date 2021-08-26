@@ -75,11 +75,17 @@ li{
   position: relative;
   margin: 1%;
   height: 14.85%;
+  max-width: 98%;
 }
 
 #barplacehold {
   position: absolute;
-  left : 40%;
+  left : 30%;
+}
+
+.maxbar {
+  /*placeholding*/
+  width: 98%;
 }
 
 /*
@@ -87,9 +93,6 @@ li{
   width: 100%* currvalue / maxvalue;
 }
 */
-.maxbar {
-  /*placeholding*/
-}
 
 
 #xaxis {

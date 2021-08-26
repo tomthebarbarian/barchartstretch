@@ -25,7 +25,7 @@
             <li>bar 1</li>
             <li>element 2</li>
             <li>element 3</li>
-<li id = 'array-elem-n'>there doesn't need to be text here</li>
+            <li id = 'array-elem-n'>there doesn't need to be text here</li>
           </ol>
         </section>
         <aside class = 'axis' id = 'yaxis'>
@@ -37,10 +37,18 @@
         <script id = 'barscript'>
           let data = [0,1,2,3,4,5]
           drawBarChart(data, options, '#barchart')
-
+          $(document).ready(function(){
+            $("#btn1").click(function(){
+              alert("Text: " + $("#barplacehold").text());
+            });
+          });
           // we're going to make doms and backgrounds to make our chart
         </script>
       </section>
+
     </main>
     </body>
+    <div>
+      <button id="btn1">Show Text</button>
+    </div>
 </html>

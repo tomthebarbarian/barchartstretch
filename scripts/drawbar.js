@@ -38,6 +38,15 @@ Customizable bar colours, per value
 Customizable label colours
 */
 
+//Always check to see if the document is ready
+$(document).ready(function(){
+  $(.maxbar).width()
+});
+
+// Dom manipulation.
+
+
+// Do on event, submit? Probably wanna make a function first.
 
 //Horizontally
 const singlebar = [1,2,3,4,5]
@@ -60,12 +69,12 @@ let bars = {
   height:5// length of input
 };
 
-$(document).ready(function(){
+
 
   // jQuery methods go here...
   $("#barchat")
 
-});
+
 
 
 const genlistelems = (data) => {
@@ -75,6 +84,7 @@ const genlistelems = (data) => {
   //Set maxbar value, take it out, then set all other bars' value relative to max
 
   for (let elem of data){
+
 
   }
   let percofmax = 0;
