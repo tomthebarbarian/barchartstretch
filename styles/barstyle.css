@@ -67,25 +67,33 @@ ul{
   padding: 0;
   height: 100%;
   width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: flex-end;
+
 }
 
 li{
+
   background-color: rgb(201, 230, 122);
   /*li margin is bar spacing*/
   position: relative;
   margin: 1%;
-  height: 14.85%;
-  max-width: 98%;
+  width: 14.85%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 
 #barplacehold {
   position: absolute;
-  left : 30%;
+  left : 0%;
 }
 
 .maxbar {
   /*placeholding*/
-  width: 98%;
+  height: 98%;
 }
 
 /*
@@ -118,7 +126,7 @@ li{
 }
 
 main {
-  text-align:center
+  text-align:center;
 }
 
 
