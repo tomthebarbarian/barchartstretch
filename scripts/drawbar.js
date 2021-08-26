@@ -95,16 +95,56 @@ const addBars = (section) => {
 }
 
 
-// height calculator
-let listlen = data.length
-
-// This is about how high the bars should be
-let maxHeight = (100 +($("li").css("margin") * listlen + 1)) / listlen
 
 // Get max of elem list
 const genlistelems = (data) => {
   let maxvalue = Math.max(data)
   let currvalue = 0
+
+// mergeSort function takes an unsorted numeric array and sorts it
+// order of smallest to largest
+const mergeSort = (workarry) => {
+  if (workarry.length <= 1){
+    return workarry
+  } else {
+    //console.log('inpivot')
+    let pivotinx = Math.floor(workarry.length / 2)
+
+    let pivotval = workarry[pivotinx]
+    //console.log(pivotval)
+
+    let leftarr = workarry.slice(0, pivotinx)
+
+    //console.log('leftarr')
+    //console.log(leftarr)
+    let rightarr = workarry.slice(pivotinx+1,workarry.length)
+    //console.log('rightarr')
+    //console.log(rightarr)
+
+    let leftans = []
+    let rightans = []
+
+    for (let elem of leftarr){
+      if (elem < pivotval){
+        leftans.push(elem)
+      } else {
+        rightans.push(elem)
+      }
+    }
+    for (let elem of rightarr){
+      if (elem < pivotval){
+        leftans.push(elem)
+      } else {
+        rightans.push(elem)
+      }
+    }
+
+    let ans = mergesort(leftans).concat([pivotval]).concat(mergesort(rightans))
+    return ans
+  }
+}
+
+
 
 //Set maxbar value, take it out, then set all other bars' value relative to max
 
@@ -121,6 +161,14 @@ const genlistelems = (data) => {
 
 // Default
 const drawBarChart = (data,  options = {},  element = section) => {
+  let ordDat = mergeSort(data)
+
+  // height calculator
+let listlen = data.length
+
+// This is about how high the bars should be
+let maxHeight = (100 +($("li").css("margin") * listlen + 1)) / listlen
+
   if (options) {
     for (let elem of options){
       bars.options = options[elem]
