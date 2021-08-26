@@ -95,11 +95,18 @@ const addBars = (section) => {
 }
 
 
+// height calculator
+let listlen = data.length
+
+// This is about how high the bars should be
+let maxHeight = (100 +($("li").css("margin") * listlen + 1)) / listlen
+
+// Get max of elem list
 const genlistelems = (data) => {
   let maxvalue = Math.max(data)
   let currvalue = 0
 
-  //Set maxbar value, take it out, then set all other bars' value relative to max
+//Set maxbar value, take it out, then set all other bars' value relative to max
 
   for (let elem of data){
 
