@@ -40,7 +40,7 @@ Customizable label colours
 
 //Always check to see if the document is ready
 $(document).ready(function(){
-  $(.maxbar).width()
+  $('.maxbar').width()
 });
 
 // Dom manipulation.

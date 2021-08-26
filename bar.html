@@ -4,13 +4,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="scripts/drawbar.js"></script>
     <link rel='stylesheet' href= styles/barstyle.css>
+    <script id = 'barscript'>
+      let data = [0,1,2,3,4,5]
+      //drawBarChart(data, options, '#barchart')
+    $(document).ready(function(){
+      $("#btn1").click(function(){
+        //alert("Text: " + $(".maxbar").text());
+        $(".maxbar").text("I've changed the values")
+        console.log($(".maxbar").width())
+        $(".maxbar").css({"width":'50%'})
+      });
+      //new fn
+    });
+      // we're going to make doms and backgrounds to make our chart
+    </script>
   </head>
   <body>
 
     <main id = 'main-conent'>
       <header>
         <h1>This is the main title</h1>
-
+        <button id="btn1">Show Text</button>
       </header>
       <section id = 'barchart'>
         <header id = 'tbltitle'>
@@ -34,21 +48,8 @@
         <footer class = 'axis' id = 'xaxis'>
           <h4>This would be the x axis</h4>
         </footer>
-        <script id = 'barscript'>
-          let data = [0,1,2,3,4,5]
-          drawBarChart(data, options, '#barchart')
-          $(document).ready(function(){
-            $("#btn1").click(function(){
-              alert("Text: " + $("#barplacehold").text());
-            });
-          });
-          // we're going to make doms and backgrounds to make our chart
-        </script>
       </section>
 
     </main>
     </body>
-    <div>
-      <button id="btn1">Show Text</button>
-    </div>
 </html>
