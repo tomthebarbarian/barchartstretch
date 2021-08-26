@@ -47,7 +47,7 @@ body {
 /* This is the container for barsonly*/
 #mainbar {
   top: 10%;
-  margin-left: 10%;
+  left: 10%;
   position: absolute;
   height: 80%;
   width: 90%;
@@ -61,26 +61,36 @@ body {
 }
 
 ul{
+  position: absolute;
   list-style-type:none;
-  margin: 2%;
+  margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 li{
   background-color: rgb(201, 230, 122);
   /*li margin is bar spacing*/
+  position: relative;
   margin: 1%;
+  height: 14.85%;
+}
+
+#barplacehold {
+  position: absolute;
+  left : 40%;
 }
 
 /*
 .notmaxbar {
   width: 100%* currvalue / maxvalue;
 }
-
-.maxbar {
-  width: 100%
-}
 */
+.maxbar {
+  /*placeholding*/
+}
+
 
 #xaxis {
   position: absolute;

@@ -17,16 +17,15 @@
           <h2>This is the main title of the barchart</h2>
         </header>
         <section id = 'mainbar'>
-          <h3>This is the main graph section</h3>
+          <h3 id = 'barplacehold'>This is the main graph section</h3>
           <ul>
             <!--All these should be length based on max-->
             <!--max bar, margin right and left-->
+            <li class = 'maxbar'>this is the max bar</li>
             <li>bar 1</li>
             <li>element 2</li>
             <li>element 3</li>
-            <li class = 'notmaxbar'>bar n</li>
-            <li class = 'maxbar'>this is the max bar</li>
-            <li id = 'array-elem-n'>there doesn't need to be text here</li>
+<li id = 'array-elem-n'>there doesn't need to be text here</li>
           </ol>
         </section>
         <aside class = 'axis' id = 'yaxis'>
@@ -35,7 +34,6 @@
         <footer class = 'axis' id = 'xaxis'>
           <h4>This would be the x axis</h4>
         </footer>
-        here is where the graph with it's own title would go
         <script id = 'barscript'>
           let data = [0,1,2,3,4,5]
           drawBarChart(data, options, '#barchart')
