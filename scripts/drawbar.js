@@ -184,7 +184,7 @@ const mergeSort = (workarry) => {
       }
     }
 
-    let ans = mergesort(leftans).concat([pivotval]).concat(mergesort(rightans))
+    let ans = mergeSort(leftans).concat([pivotval]).concat(mergeSort(rightans))
     return ans
   }
 }
@@ -218,6 +218,7 @@ const drawBarChart = (data,  options = {},  element) => {
   let listlen = data.length
 
   // This is about how high the bars should be
+  removeBars(element)
   addBars(element)
   let barWidth = (100 +($("li").css("margin") * listlen + 1)) / listlen
 
