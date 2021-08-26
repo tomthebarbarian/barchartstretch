@@ -106,14 +106,16 @@ const maxBarValue = () => {
 // function addBarElem adds a list item to a list section
 // also at that time, adds a variable height value
 // based on the value relative to max val
-const addBarElem = (section, dataArray, width) => {
+const addBarElem = (section, dataArray, width, arrayMax) => {
 
   for (let i = 0; i < dataArray.length; i++){
     $(section).append(`
     <li id = 'currbar${i}'>${dataArray[i]}</li>
     `)
 
-    $(`#currbar${i}`).css(`height: ${height}`)
+    // Set this relative to max
+    let height = (dataArray[i] / arrayMax)
+    $(`#currbar${i}`).css(`height: ${height}%`)
 
     // set width in list
   }
@@ -122,10 +124,17 @@ const addBarElem = (section, dataArray, width) => {
 }
 
 // Get max of elem list
-const genlistelems = (data) => {
-  let maxvalue = Math.max(data)
-  let currvalue = 0
-
+const getArrayMax = (data) => {
+  let maxvalue
+  for (let elem of data) {
+    if (max === undefined){
+      max = elem
+    } else if (elem > max){
+      max = elem
+    }
+  }
+  return maxvalue
+}
 // mergeSort function takes an unsorted numeric array and sorts it
 // order of smallest to largest
 const mergeSort = (workarry) => {
@@ -171,22 +180,37 @@ const mergeSort = (workarry) => {
 
 // Default
 const drawBarChart = (data,  options = {},  element) => {
-  let ordDat = mergeSort(data)
+
+  // This is the ordered array, but it's not necessary
+  let ordDat
+  let max
+  ordDat = mergeSort(data)
+
+  if (ordDat){
+    max = ordDat[ordDat.length-1]
+  } else {
+  // just n find max
+  //could just go through array for elems
+    max = getArrayMax(data)
+  }
+
+
 
   // height calculator
   let listlen = data.length
 
   // This is about how high the bars should be
-  let barWidth = (100 +($("li").css("margin") * listlen + 1)) / listlen
   addBars(element)
-  addBarElem('#bars', ordDat, barWidth)
+  let barWidth = (100 +($("li").css("margin") * listlen + 1)) / listlen
 
+  if (ordDat) {
+  // id bars is set by addbars
+  addBarElem('#bars', ordDat, barWidth, max)
+  }
   if (options) {
     for (let elem of options){
       bars.options = options[elem]
     }
 
   }
-};
-
-
+}
