@@ -89,6 +89,7 @@ li{
 #barplacehold {
   position: absolute;
   left : 0%;
+  display: none;
 }
 
 .maxbar {

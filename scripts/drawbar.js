@@ -92,14 +92,15 @@ $(document).ready(() => {
 // function removebars removes all elements
 // from the input section
 const removeBars = (section) => {
-  $(section).remove();
+  $(section + " #bars").remove();
 }
 
 // function addBars adds an emptyunordered list to section
 // with id = 'bars'
 const addBars = (section) => {
   $(section).append(`
-  <ul id = 'bars'>  This is the main graph section </ul>
+  <ul id = 'bars'></ul>
+  <li id = barplacehold></li>
   `)
 }
 
@@ -224,8 +225,12 @@ const drawBarChart = (data,  options = {},  element) => {
 
   if (ordDat) {
   // id bars is set by addbars
-  addBarElem('#bars', ordDat, barWidth, max)
-  }
+  // wait for removeBars
+  setTimeout(() => {
+    addBarElem('#bars', ordDat, barWidth, max)
+    }
+    , 2000)
+}
   if (options) {
     for (let elem of options){
       bars.options = options[elem]
