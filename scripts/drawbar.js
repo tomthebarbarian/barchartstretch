@@ -40,6 +40,14 @@ Customizable label colours
 
 //Always check to see if the document is ready
 
+
+// Constants
+const barChartDiv =  "#mainbar"
+const allBars = '#bars'
+const singlebar = [1,2,3,4,5]
+
+const longarray = [88,55,11, 4,6,3,8,7,34,49]
+
 // event listeners aways need an own function wrapping the
 // other processes
 function changeText(selector){
@@ -49,7 +57,7 @@ function changeText(selector){
     , 2000)
   //$(selector).text("I've changed the text, dw it'll return in 2")
   $(selector).text("We're now gonna create the barchart")
-  drawBarChart([1,6,5,3,4],  options = {},  '#mainbar')
+  drawBarChart(longarray, {},  '#mainbar')
 
   // Testing for height changer
   /*
@@ -61,10 +69,7 @@ function changeText(selector){
 // Dom manipulation.
 
 
-// Constants
-const barChartDiv =  "#mainbar"
-const allBars = '#bars'
-const singlebar = [1,2,3,4,5]
+
 
 // Do on event, submit? Probably wanna make a function first.
 
