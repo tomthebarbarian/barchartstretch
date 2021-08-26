@@ -48,12 +48,15 @@ function changeText(selector){
     $(selector).text(tempstore)}
     , 2000)
   //$(selector).text("I've changed the text, dw it'll return in 2")
+  $(selector).text("We're now gonna create the barchart")
+  drawBarChart([1,6,5,3,4],  options = {},  '#mainbar')
 
   // Testing for height changer
+  /*
   let maxheight = parseInt($('li').css('max-height').substring(0,2))
   let height = (7 / 25) * (maxheight)
   $(selector).text(`height: ${height}%`)
-
+  */
 }
 // Dom manipulation.
 
