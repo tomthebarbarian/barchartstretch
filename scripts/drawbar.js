@@ -47,7 +47,12 @@ function changeText(selector){
   setTimeout(() => {
     $(selector).text(tempstore)}
     , 2000)
-  $(selector).text("I've changed the text, dw it'll return in 2")
+  //$(selector).text("I've changed the text, dw it'll return in 2")
+
+  // Testing for height changer
+  let maxheight = parseInt($('li').css('max-height').substring(0,2))
+  let height = (7 / 25) * (maxheight)
+  $(selector).text(`height: ${height}%`)
 
 }
 // Dom manipulation.
@@ -62,11 +67,12 @@ const singlebar = [1,2,3,4,5]
 
 $(document).ready(() => {
   $("#btn1").click(() => {
-    //changeText('.maxbar')
-    removeBars(allBars)
-    setTimeout(() => {
-      addBars(barChartDiv)
-    }, 1000)
+    changeText('#tbltitle')
+    //removeBars(allBars)
+
+//    setTimeout(() => {
+//      addBars(barChartDiv)
+//    }, 1000)
   })
   /*$("#btn1").click(function(){
     $('.maxbar').text("I've changed the text")
@@ -90,9 +96,11 @@ const removeBars = (section) => {
 // with id = 'bars'
 const addBars = (section) => {
   $(section).append(`
-  <ul id = 'bars'> This is the main graph section </ul>
+  <ul id = 'bars'>  This is the main graph section </ul>
   `)
 }
+
+//${$('#mainbar').css("top")}
 
 //Set maxbar value, take it out, then set all other bars' value relative to max
 const maxBarValue = () => {
@@ -113,10 +121,10 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
     <li id = 'currbar${i}'>${dataArray[i]}</li>
     `)
 
-    // Set this relative to max
-    let height = (dataArray[i] / arrayMax)
+    // Set this bar's height relative to max
+    let maxheight = parseInt($('li').css('max-height').substring(0,2))
+    let height = (dataArray[i] / arrayMax) * (maxheight)
     $(`#currbar${i}`).css(`height: ${height}%`)
-
     // set width in list
   }
   // set all bar widths of list items
@@ -179,6 +187,13 @@ const mergeSort = (workarry) => {
 }
 
 // Default
+
+// drawBarChart takes an array of numbers(data), a options object(options)
+// and a selector str(element) and adds a bar graph
+// showing the values of data into element
+
+// arrayOf num, options obj, str -> none
+// modifies a js element
 const drawBarChart = (data,  options = {},  element) => {
 
   // This is the ordered array, but it's not necessary
