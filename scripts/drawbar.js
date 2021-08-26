@@ -128,21 +128,23 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
     // Set this bar's height relative to max
     let maxheight = parseInt($('li').css('max-height').substring(0,2))
     let height = (dataArray[i] / arrayMax) * (maxheight)
-    $(`#currbar${i}`).css(`height: ${height}%`)
+    //console.log(`#currbar${i}`)
+    //console.log(`${height}%`)
+    $(`#currbar${i}`).css(`height`, `${height}%`)
     // set width in list
   }
   // set all bar widths of list items
-  $(section+' li').css(`width: ${width};`)
+  $(section+' li').css(`width`, `${width}%`)
 }
 
 // Get max of elem list
 const getArrayMax = (data) => {
   let maxvalue
   for (let elem of data) {
-    if (max === undefined){
-      max = elem
-    } else if (elem > max){
-      max = elem
+    if (maxvalue === undefined){
+      maxvalue = elem
+    } else if (elem > maxvalue){
+      maxvalue = elem
     }
   }
   return maxvalue
@@ -203,7 +205,8 @@ const drawBarChart = (data,  options = {},  element) => {
   // This is the ordered array, but it's not necessary
   let ordDat
   let max
-  ordDat = mergeSort(data)
+
+  //ordDat = mergeSort(data)
 
   if (ordDat){
     max = ordDat[ordDat.length-1]
@@ -225,12 +228,18 @@ const drawBarChart = (data,  options = {},  element) => {
 
   if (ordDat) {
   // id bars is set by addbars
-  // wait for removeBars
+  // wait for removeBars?
+  /*
   setTimeout(() => {
     addBarElem('#bars', ordDat, barWidth, max)
     }
     , 2000)
-}
+*/
+  //don't wait
+  addBarElem('#bars', ordDat, barWidth, max)
+  } else {
+    addBarElem('#bars', data, barWidth, max)
+  }
   if (options) {
     for (let elem of options){
       bars.options = options[elem]
