@@ -79,8 +79,9 @@ li{
   /*li margin is bar spacing*/
   position: relative;
   margin: 1%;
-  width: 14.85%;
   height: 50%;
+  width: 18.8%;
+  max-height: 97%;
   display: flex;
   align-items: center;
   text-align: center;
@@ -93,7 +94,7 @@ li{
 
 .maxbar {
   /*placeholding*/
-  height: 98%;
+  height: 100%;
 }
 
 /*
