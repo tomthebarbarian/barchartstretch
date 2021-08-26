@@ -94,18 +94,31 @@ const addBars = (section) => {
   `)
 }
 
+//Set maxbar value, take it out, then set all other bars' value relative to max
+const maxBarValue = () => {
+  let percofmax = 0;
+  let deflistelem = `#array-elem-${currlistelem} {\n
+    width: ${percofmax}%;
+  }`
+  percofmax = value / maxvalue
+}
+
 // function addBarElem adds a list item to a list section
-const addBarElem = (section, dataArray, height) => {
+// also at that time, adds a variable height value
+// based on the value relative to max val
+const addBarElem = (section, dataArray, width) => {
 
   for (let i = 0; i < dataArray.length; i++){
     $(section).append(`
     <li id = 'currbar${i}'>${dataArray[i]}</li>
     `)
 
+    $(`#currbar${i}`).css(`height: ${height}`)
+
     // set width in list
   }
-  // set all bar heights of list items
-  $(section+' li').css(`height: ${height};`)
+  // set all bar widths of list items
+  $(section+' li').css(`width: ${width};`)
 }
 
 // Get max of elem list
@@ -156,21 +169,6 @@ const mergeSort = (workarry) => {
   }
 }
 
-
-
-//Set maxbar value, take it out, then set all other bars' value relative to max
-
-  for (let elem of data){
-
-
-  }
-  let percofmax = 0;
-  let deflistelem = `#array-elem-${currlistelem} {\n
-    width: ${percofmax}%;
-  }`
-  percofmax = value / maxvalue
-}
-
 // Default
 const drawBarChart = (data,  options = {},  element) => {
   let ordDat = mergeSort(data)
@@ -179,9 +177,9 @@ const drawBarChart = (data,  options = {},  element) => {
   let listlen = data.length
 
   // This is about how high the bars should be
-  let barHeight = (100 +($("li").css("margin") * listlen + 1)) / listlen
+  let barWidth = (100 +($("li").css("margin") * listlen + 1)) / listlen
   addBars(element)
-  addBarElem('#bars', ordDat, barHeight)
+  addBarElem('#bars', ordDat, barWidth)
 
   if (options) {
     for (let elem of options){
