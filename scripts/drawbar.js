@@ -325,5 +325,9 @@ const drawBarChart = (data,  options,  element) => {
     //Bar Main title
     $('#tbltitle').text(options.title)
     //console.log($('#tbltitle').text())
+
+    //temporary fix
+    $('.tick').css('margin', '0')
+
   }
 }
