@@ -148,8 +148,6 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
     $(section).append(`
     <li id = 'currbar${i}'>${dataArray[i]}</li>
     `)
-
-
     // Set this bar's height relative to max
     let maxheight = parseInt($('li').css('max-height').substring(0,2))
     let height = (dataArray[i] / arrayMax) * (maxheight)
@@ -312,8 +310,8 @@ const drawBarChart = (data,  options,  element) => {
     $(listItem).css('color', options.labcolour)
 
     // Bar margin
-    $(listItem).css("margin-left", options.spacing)
     $(listItem).css("margin-right", options.spacing)
+    $('#currbar0').css("margin-left", options.spacing)
     // also sets the max height
     $(listItem).css("max-height", (100 - 2*parseInt(workingMargin.split('%')[0])).toString(10)+'%')
 

@@ -54,8 +54,6 @@ body {
   height: 80%;
   width: 90%;
   background-color: rgba(80, 72, 72, 0.63);
-  margin-bottom: 0;
-  margin-top: 0;
 }
 #tbltitle {
   position: absolute;
@@ -83,13 +81,13 @@ li{
   background-color: rgb(201, 230, 122);
   /*li margin is bar spacing*/
   position: relative;
-  margin: 1%;
   height: 50%;
   width: 18.8%;
   max-height: 97%;
   display: flex;
   align-items: center;
   text-align: center;
+  margin-right: 2%;
   margin-bottom: 0;
   margin-top: 0;
 }
@@ -102,7 +100,7 @@ li{
 
 .maxbar {
   /*placeholding*/
-  height: 97%;
+  height: 98%;
 }
 
 /*
