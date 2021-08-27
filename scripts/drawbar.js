@@ -138,14 +138,6 @@ const addBars = (section) => {
 
 //${$('#mainbar').css("top")}
 
-//Set maxbar value, take it out, then set all other bars' value relative to max
-const maxBarValue = () => {
-  let percofmax = 0;
-  let deflistelem = `#array-elem-${currlistelem} {\n
-    width: ${percofmax}%;
-  }`
-  percofmax = value / maxvalue
-}
 
 // function addBarElem adds a list item to a list section
 // also at that time, adds a variable height value
@@ -156,6 +148,7 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
     $(section).append(`
     <li id = 'currbar${i}'>${dataArray[i]}</li>
     `)
+
 
     // Set this bar's height relative to max
     let maxheight = parseInt($('li').css('max-height').substring(0,2))
@@ -224,10 +217,18 @@ const mergeSort = (workarry) => {
   }
 }
 
+const addYTick = (section) => {
+  $(section).append(`
+  <ul id = 'ticks'></ul>
+  <li id = tickplacehold></li>
+  `)
+}
+
+
 // function yTicks takes the array of values and adds line
 // represented by borders of list elems
 // Lines should be evenly spaced according to bar heights
-const yTicks = (values) => {
+const addYTicks = (values) => {
 
 }
 
@@ -245,6 +246,8 @@ const drawBarChart = (data,  options,  element) => {
 
   //ordDat = mergeSort(data)
 
+
+
   if (ordDat){
     max = ordDat[ordDat.length-1]
   } else {
@@ -253,6 +256,8 @@ const drawBarChart = (data,  options,  element) => {
     max = getArrayMax(data)
   }
 
+  // max should be rounded and based on scale tick max
+  max = (Math.round(max/5)*5)+5
 
 
   // height calculator
@@ -269,7 +274,7 @@ const drawBarChart = (data,  options,  element) => {
     $("li").css("margin", options.spacing)
   }
   //margin should be changed here
-  let barWidth = (98 +(parseInt(workingMargin.split('%')[0]) * listlen + 1)) / listlen
+  let barWidth = (100 +(parseInt(workingMargin.split('%')[0]) * listlen + 1)) / listlen
 
   // if main title not visible
   if (options.titleVis === false){
@@ -308,8 +313,9 @@ const drawBarChart = (data,  options,  element) => {
 
     // Bar margin
     $(listItem).css("margin", options.spacing)
-    // also sets the max height, with 98% spacing so it looks neat
-    $(listItem).css("max-height", (98 - 2*parseInt(workingMargin.split('%')[0])).toString(10)+'%')
+    $(listItem).css("top", options.spacing)
+    // also sets the max height
+    $(listItem).css("max-height", (100 - 2*parseInt(workingMargin.split('%')[0])).toString(10)+'%')
 
     //console.log($(listItem).css("max-height"))
 
