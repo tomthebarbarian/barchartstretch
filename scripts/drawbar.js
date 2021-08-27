@@ -259,8 +259,17 @@ const drawBarChart = (data,  options,  element) => {
   // This is about how high the bars should be
   removeBars(element)
   addBars(element)
-  let barWidth = (100 +($("li").css("margin") * listlen + 1)) / listlen
 
+  // if margin is being changed
+  let workingMargin = $("li").css("margin")
+  if (options.spacing !== undefined){
+    workingMargin = options.spacing
+    $("li").css("margin", options.spacing)
+  }
+  //margin should be changed here
+  let barWidth = (100 +(parseInt(workingMargin.split('%')[0]) * listlen + 1)) / listlen
+
+  console.log(barWidth)
   if (ordDat) {
   // id bars is set by addbars
   // wait for removeBars?
@@ -288,7 +297,7 @@ const drawBarChart = (data,  options,  element) => {
     // Bar margin
     $(listItem).css("margin", options.spacing)
     // also sets the max height
-    $(listItem).css("max-height", (100 - options.spacing*2).toString(10)+'%')
-
+    //$(listItem).css("max-height", (100 - options.spacing*2).toString(10)+'%')
+    // needs work
   }
 }
