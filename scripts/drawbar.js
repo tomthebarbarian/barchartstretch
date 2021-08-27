@@ -48,6 +48,25 @@ const singlebar = [1,2,3,4,5]
 
 const longarray = [88,55,11, 4,6,3,8,7,34,49]
 
+const optionsexample = {
+  colour: red,
+  // Bar label
+  labcolour: blue,
+  // Barchart margins
+  spacing: '3%',
+  // main title
+  title: 'This is the graph main title',
+  //Xlabel
+  xlab: 'this is x',
+  //y label
+  ylab: 'this is y',
+
+
+
+
+}
+
+
 // event listeners aways need an own function wrapping the
 // other processes
 function changeText(selector){
@@ -197,7 +216,12 @@ const mergeSort = (workarry) => {
   }
 }
 
-// Default
+// function yTicks takes the array of values and adds line
+// represented by borders of list elems
+// Lines should be evenly spaced according to bar heights
+const yTicks = (values) => {
+
+}
 
 // drawBarChart takes an array of numbers(data), a options object(options)
 // and a selector str(element) and adds a bar graph
@@ -205,7 +229,7 @@ const mergeSort = (workarry) => {
 
 // arrayOf num, options obj, str -> none
 // modifies a js element
-const drawBarChart = (data,  options = {},  element) => {
+const drawBarChart = (data,  options,  element) => {
 
   // This is the ordered array, but it's not necessary
   let ordDat
@@ -245,7 +269,16 @@ const drawBarChart = (data,  options = {},  element) => {
   } else {
     addBarElem('#bars', data, barWidth, max)
   }
-  if (options) {
+  if (Object.keys(options).length> 0) {
+    const listitem = '#bars li'
+
+    // bar colour
+    $(listitem).css('background-color', options.colour)
+    $(listitem).css('background-color', options.labcolour)
+
+    // label colour
+    $()
+
     for (let elem of options){
       bars.options = options[elem]
     }
