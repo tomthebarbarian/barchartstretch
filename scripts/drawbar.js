@@ -312,8 +312,8 @@ const drawBarChart = (data,  options,  element) => {
     $(listItem).css('color', options.labcolour)
 
     // Bar margin
-    $(listItem).css("margin", options.spacing)
-    $(listItem).css("top", options.spacing)
+    $(listItem).css("margin-left", options.spacing)
+    $(listItem).css("margin-right", options.spacing)
     // also sets the max height
     $(listItem).css("max-height", (100 - 2*parseInt(workingMargin.split('%')[0])).toString(10)+'%')
 
