@@ -32,6 +32,8 @@ body {
   counter-reset: ol-step-counter;
 }
 
+
+
 /* This is the container for everything*/
 #barchart {
   position: absolute;

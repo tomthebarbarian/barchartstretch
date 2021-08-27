@@ -51,13 +51,13 @@ const longArray = [88,55,11, 4,6,3,8,7,34,49]
 const optionsExample = {
   colour: 'pink',
   // Bar label
-  labcolour: 'sky blue',
+  labcolour: 'rgb(135, 169, 219)',
   // barlab pos
   labPos: 'center',// this should be the llabel position
   // align items, flex-end, flex-start, center
 
   // Barchart margins, must be in percent string
-  spacing: '3%',
+  spacing: '1%',
   // main title
   title: 'This is the graph main title',
   titleVis: false, // toggles if there's a main title at all
