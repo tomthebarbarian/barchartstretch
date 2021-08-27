@@ -297,7 +297,8 @@ const drawBarChart = (data,  options,  element) => {
     // Bar margin
     $(listItem).css("margin", options.spacing)
     // also sets the max height
-    //$(listItem).css("max-height", (100 - options.spacing*2).toString(10)+'%')
+    $(listItem).css("max-height", (100 - 2*parseInt(workingMargin.split('%')[0])).toString(10)+'%')
+    console.log($(listItem).css("max-height"))
     // needs work
   }
 }
