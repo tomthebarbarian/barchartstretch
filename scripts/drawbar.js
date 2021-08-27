@@ -285,6 +285,10 @@ const drawBarChart = (data,  options,  element) => {
     // label colour
     $(listItem).css('color', options.labcolour)
 
+    // Bar margin
+    $(listItem).css("margin", options.spacing)
+    // also sets the max height
+    $(listItem).css("max-height", (100 - options.spacing*2).toString(10)+'%')
 
   }
 }
