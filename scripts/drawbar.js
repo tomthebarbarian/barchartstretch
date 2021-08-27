@@ -46,9 +46,9 @@ const barChartDiv =  "#mainbar"
 const allBars = '#bars'
 const singlebar = [1,2,3,4,5]
 
-const longarray = [88,55,11, 4,6,3,8,7,34,49]
+const longArray = [88,55,11, 4,6,3,8,7,34,49]
 
-const optionsexample = {
+const optionsExample = {
   colour: 'red',
   // Bar label
   labcolour: 'blue',
@@ -82,7 +82,7 @@ function changeText(selector){
     , 2000)
   //$(selector).text("I've changed the text, dw it'll return in 2")
   $(selector).text("We're now gonna create the barchart")
-  drawBarChart(longarray, {},  '#mainbar')
+  drawBarChart(longArray, optionsExample,  '#mainbar')
 
   // Testing for height changer
   /*
@@ -276,18 +276,15 @@ const drawBarChart = (data,  options,  element) => {
     addBarElem('#bars', data, barWidth, max)
   }
   if (Object.keys(options).length> 0) {
-    const listitem = '#bars li'
+    const listItem = '#bars li'
 
     // bar colour
-    $(listitem).css('background-color', options.colour)
-    $(listitem).css('background-color', options.labcolour)
+    $(listItem).css('background-color', options.colour)
+    //$(listitem).css('background-color', options.labcolour)
 
     // label colour
-    $()
+    $(listItem).css('color', options.labcolour)
 
-    for (let elem of options){
-      bars.options = options[elem]
-    }
 
   }
 }
