@@ -49,13 +49,19 @@ const singlebar = [1,2,3,4,5]
 const longarray = [88,55,11, 4,6,3,8,7,34,49]
 
 const optionsexample = {
-  colour: red,
+  colour: 'red',
   // Bar label
-  labcolour: blue,
+  labcolour: 'blue',
+  // barlab pos
+  labPos: 'center',// this should be the llabel position
   // Barchart margins
+
   spacing: '3%',
   // main title
   title: 'This is the graph main title',
+  titleVis: true, // toggles if there's a main title at all
+  // shoudl affect mainbar and yaxis pos top
+
   //Xlabel
   xlab: 'this is x',
   //y label
