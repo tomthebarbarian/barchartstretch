@@ -148,6 +148,8 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
     $(section).append(`
     <li id = 'currbar${i}'>${dataArray[i]}</li>
     `)
+
+    console.log(arrayMax)
     // Set this bar's height relative to max
     let maxheight = parseInt($('li').css('max-height').substring(0,2))
     let height = (dataArray[i] / arrayMax) * (maxheight)
