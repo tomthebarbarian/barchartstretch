@@ -53,9 +53,10 @@ const optionsExample = {
   // Bar label
   labcolour: 'blue',
   // barlab pos
-  labPos: 'center',// this should be the llabel position
-  // Barchart margins
+  labPos: 'flex-end',// this should be the llabel position
+  // align items, flex-end, flex-start
 
+  // Barchart margins, must be in percent string
   spacing: '3%',
   // main title
   title: 'This is the graph main title',
@@ -267,7 +268,7 @@ const drawBarChart = (data,  options,  element) => {
     $("li").css("margin", options.spacing)
   }
   //margin should be changed here
-  let barWidth = (100 +(parseInt(workingMargin.split('%')[0]) * listlen + 1)) / listlen
+  let barWidth = (98 +(parseInt(workingMargin.split('%')[0]) * listlen + 1)) / listlen
 
   console.log(barWidth)
   if (ordDat) {
@@ -296,9 +297,13 @@ const drawBarChart = (data,  options,  element) => {
 
     // Bar margin
     $(listItem).css("margin", options.spacing)
-    // also sets the max height
-    $(listItem).css("max-height", (100 - 2*parseInt(workingMargin.split('%')[0])).toString(10)+'%')
-    console.log($(listItem).css("max-height"))
-    // needs work
+    // also sets the max height, with 98% spacing so it looks neat
+    $(listItem).css("max-height", (98 - 2*parseInt(workingMargin.split('%')[0])).toString(10)+'%')
+
+    //console.log($(listItem).css("max-height"))
+
+    // label position in bars
+    $(listItem).css("align-items",options.labPos)
+
   }
 }
