@@ -49,12 +49,12 @@ const singlebar = [1,2,3,4,5]
 const longArray = [88,55,11, 4,6,3,8,7,34,49]
 
 const optionsExample = {
-  colour: 'red',
+  colour: 'pink',
   // Bar label
-  labcolour: 'blue',
+  labcolour: 'sky blue',
   // barlab pos
-  labPos: 'flex-end',// this should be the llabel position
-  // align items, flex-end, flex-start
+  labPos: 'center',// this should be the llabel position
+  // align items, flex-end, flex-start, center
 
   // Barchart margins, must be in percent string
   spacing: '3%',
@@ -82,8 +82,8 @@ function changeText(selector){
     $(selector).text(tempstore)}
     , 2000)
   //$(selector).text("I've changed the text, dw it'll return in 2")
-  $(selector).text("We're now gonna create the barchart")
-  drawBarChart(longArray, optionsExample,  '#mainbar')
+  //$(selector).text("We're now gonna create the barchart")
+
 
   // Testing for height changer
   /*
@@ -99,11 +99,12 @@ function changeText(selector){
 
 // Do on event, submit? Probably wanna make a function first.
 
+
 $(document).ready(() => {
   $("#btn1").click(() => {
-    changeText('#tbltitle')
+    //changeText('#tbltitle')
     //removeBars(allBars)
-
+    drawBarChart(longArray, optionsExample,  '#mainbar')
 //    setTimeout(() => {
 //      addBars(barChartDiv)
 //    }, 1000)
@@ -305,5 +306,8 @@ const drawBarChart = (data,  options,  element) => {
     // label position in bars
     $(listItem).css("align-items",options.labPos)
 
+    //Bar Main title
+    $('#tbltitle').text(options.title)
+    console.log($('#tbltitle').text())
   }
 }
