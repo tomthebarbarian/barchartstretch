@@ -60,7 +60,7 @@ const optionsExample = {
   spacing: '3%',
   // main title
   title: 'This is the graph main title',
-  titleVis: true, // toggles if there's a main title at all
+  titleVis: false, // toggles if there's a main title at all
   // shoudl affect mainbar and yaxis pos top
 
   //Xlabel
@@ -271,7 +271,17 @@ const drawBarChart = (data,  options,  element) => {
   //margin should be changed here
   let barWidth = (98 +(parseInt(workingMargin.split('%')[0]) * listlen + 1)) / listlen
 
-  console.log(barWidth)
+  // if main title not visible
+  if (options.titleVis === false){
+    $('#tbltitle').css('display','none')
+    //  move yaxis and mainbar
+    $('#mainbar').css('top', '0')
+    $('#mainbar').css('height', '90%')
+
+    $('#yaxis').css('top', '0')
+    $('#yaxis').css('height', '90%')
+  }
+
   if (ordDat) {
   // id bars is set by addbars
   // wait for removeBars?
@@ -308,6 +318,6 @@ const drawBarChart = (data,  options,  element) => {
 
     //Bar Main title
     $('#tbltitle').text(options.title)
-    console.log($('#tbltitle').text())
+    //console.log($('#tbltitle').text())
   }
 }
