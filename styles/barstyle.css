@@ -76,11 +76,10 @@ ul{
 
 }
 
-/*
+
 li{
   background-color: rgb(221, 224, 212);
   /*li margin is bar spacing*/
-  /*
   position: relative;
   height: 50%;
   width: 18.8%;
@@ -93,12 +92,11 @@ li{
   margin-top: 0;
   opacity: 0.5;
 }
-*/
+
 
 
 .bar{
   background-color: rgb(221, 224, 212);
-  /*li margin is bar spacing*/
   position: relative;
   height: 50%;
   width: 18.8%;
@@ -149,12 +147,6 @@ li{
   margin-bottom: 0%;
   margin-right: 0%;
   text-align: justify;
-  border-style: solid;
-  border-color: black;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 0;
-  border-top:0;
   align-items: flex-start;
   opacity: 1;
 }
