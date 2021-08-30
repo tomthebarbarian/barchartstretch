@@ -371,4 +371,7 @@ const drawBarChart = (data,  options,  element) => {
     //$('.tick').css('border-top-width',`${borderHeight}%`)
 
   }
+
+  //Git revert testing
+  //1
 }
