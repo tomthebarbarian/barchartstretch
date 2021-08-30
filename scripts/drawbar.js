@@ -278,8 +278,8 @@ const drawBarChart = (data,  options,  element) => {
 
   //Calc tick height
   const numTicks = max/5
-  const borderHeight = 0.2
-  const tickHeight = (100/numTicks)-borderHeight
+  const tickMargin = 0.2
+  const tickHeight = (100/numTicks)-tickMargin
   console.log(tickHeight)
 
   $('.tick').css('height',`${tickHeight}%`)
@@ -361,9 +361,9 @@ const drawBarChart = (data,  options,  element) => {
     //console.log($('#tbltitle').text())
 
     //temporary fixes
-    $('.tick').css('margin', '0')
+    $('.tick').css('margin', `${tickMargin}% 0% 0%`)
     $('.tick').css('height',`${tickHeight}%`)
-    $('.tick').css('border-top',`${borderHeight}%`)
+    //$('.tick').css('border-top-width',`${borderHeight}%`)
 
   }
 }
