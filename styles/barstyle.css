@@ -108,6 +108,7 @@ li{
   margin:0;
   border: thin;
   border-color: black;
+  display: none;
 }
 
 #ticks{
@@ -126,7 +127,6 @@ li{
   height: 19.5%;
   margin:0;
   text-align: justify;
-  display: 1%;
   border-style: solid;
   border-color: black;
   border-left: 0;
@@ -175,13 +175,18 @@ li{
   position: absolute;
   height: 80%;
   width: 10%;
-  background-color: rgb(236, 152, 229)
+  background-color: rgb(236, 152, 229);
+  display:flex;
 }
 
 #ytitle{
   position: absolute;
   width:50%;
-  height: 100%;
+  height: 20%;
+  align-content: flex-end;
+  display: flex;
+  top: 45%;
+  margin:0%;
 }
 
 #ylabs{

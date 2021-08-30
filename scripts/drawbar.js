@@ -125,6 +125,7 @@ $(document).ready(() => {
 // from the input section
 const removeBars = (section) => {
   $(section + " #bars").remove();
+  $(section + " #ticks").remove();
 }
 
 // function addBars adds an emptyunordered list to section
@@ -228,8 +229,14 @@ const addYTick = (section) => {
 // function yTicks takes the array of values and adds line
 // represented by borders of list elems
 // Lines should be evenly spaced according to bar heights
-const addYTicks = (values) => {
+const addYTicks = (section, numOfTick) => {
 
+
+  for (let i = 0; i< numOfTick; i++){
+    $(section).append(`
+    <li class = tick id = 'currtick${i}'></li>
+    `)
+  }
 }
 
 // drawBarChart takes an array of numbers(data), a options object(options)
@@ -265,6 +272,23 @@ const drawBarChart = (data,  options,  element) => {
 
   // This is about how high the bars should be
   removeBars(element)
+
+  // add variable ticks before bars
+  addYTick('#mainbar')
+
+  //Calc tick height
+  const numTicks = max/5
+  const borderHeight = 0.2
+  const tickHeight = (100/numTicks)-borderHeight
+  console.log(tickHeight)
+
+  $('.tick').css('height',`${tickHeight}%`)
+
+  // Add ticks
+  addYTicks('#ticks',numTicks)
+
+
+  //add Bar container
   addBars(element)
 
   // if margin is being changed
@@ -287,6 +311,10 @@ const drawBarChart = (data,  options,  element) => {
     $('#yaxis').css('height', '90%')
   }
 
+
+
+
+
   if (ordDat) {
   // id bars is set by addbars
   // wait for removeBars?
@@ -297,10 +325,16 @@ const drawBarChart = (data,  options,  element) => {
     , 2000)
 */
   //don't wait
-  addBarElem('#bars', ordDat, barWidth, max)
+    addBarElem('#bars', ordDat, barWidth, max)
   } else {
     addBarElem('#bars', data, barWidth, max)
   }
+
+
+  // adding columns for bar labels
+
+
+  // Customising the graph
   if (Object.keys(options).length> 0) {
     const listItem = '#bars li'
 
@@ -326,8 +360,10 @@ const drawBarChart = (data,  options,  element) => {
     $('#tbltitle').text(options.title)
     //console.log($('#tbltitle').text())
 
-    //temporary fix
+    //temporary fixes
     $('.tick').css('margin', '0')
+    $('.tick').css('height',`${tickHeight}%`)
+    $('.tick').css('border-top',`${borderHeight}%`)
 
   }
 }
