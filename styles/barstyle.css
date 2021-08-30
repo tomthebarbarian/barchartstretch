@@ -55,7 +55,7 @@ body {
   width: 90%;
   background-color: rgba(80, 72, 72, 0.63);
 }
-#tblTitle {
+#tbltitle {
   position: absolute;
   height: 10%;
   width: 100%;
@@ -158,7 +158,7 @@ li{
 */
 
 
-#xAxis {
+#xaxis {
   position: absolute;
   margin-left: 10%;
   height: 10%;
@@ -168,7 +168,7 @@ li{
 
 }
 
-#xTitle{
+#xtitle{
   position: absolute;
   height: 50%;
   width:  100%;
@@ -177,14 +177,14 @@ li{
 
 }
 
-#xLabs{
+#xlabs{
   position: absolute;
   height: 50%;
   width:  100%;
   top: 0%;
 }
 
-#yAxis {
+#yaxis {
   top: 10%;
   position: absolute;
   height: 80%;
@@ -193,7 +193,7 @@ li{
   display:flex;
 }
 
-#yTitle{
+#ytitle{
   position: absolute;
   width:50%;
   height: 20%;
@@ -203,7 +203,7 @@ li{
   margin:0%;
 }
 
-#yLabs{
+#ylabs{
   position: absolute;
   display: block;
   width:50%;
@@ -221,7 +221,7 @@ main {
   text-align:center;
 }
 
-#tblTitle{
+#tbltitle{
   margin: 0;
 }
 
