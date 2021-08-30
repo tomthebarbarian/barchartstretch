@@ -47,7 +47,7 @@ body {
 }
 
 /* This is the container for barsonly*/
-#mainbar {
+#mainBar {
   top: 10%;
   left: 10%;
   position: absolute;
