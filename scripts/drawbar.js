@@ -124,9 +124,9 @@ $(document).ready(() => {
 // function removebars removes all elements
 // from the input section
 const removeBars = (section) => {
-
+  $(section + " #tics").remove();
   $(section + " #bars").remove();
-  $(section + " #ticks").remove();
+
 }
 
 // function addBars adds an emptyunordered list to section
@@ -274,9 +274,11 @@ const drawBarChart = (data,  options,  element) => {
   // This is about how high the bars should be
   removeBars(element)
 
+
   // add variable ticks before bars
   addYTick('#mainbar')
 
+  $("#yaxis #ylabs ").remove();
   addYTick('#yaxis')
 
   //Calc tick height
@@ -291,7 +293,7 @@ const drawBarChart = (data,  options,  element) => {
   //$('.tick').css('height',`${tickHeight}%`)
   // Add ticks
   addYTicks('#ticks',numTicks)
-
+  addYTicks('#ylabs',numTicks)
 
   //add Bar container
   addBars(element)
@@ -372,6 +374,4 @@ const drawBarChart = (data,  options,  element) => {
 
   }
 
-  //Git revert testing
-  //1
 }
