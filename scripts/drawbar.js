@@ -124,7 +124,7 @@ $(document).ready(() => {
 // function removebars removes all elements
 // from the input section
 const removeBars = (section) => {
-  $(section + " #tics").remove();
+  $(section + " .ticks").remove();
   $(section + " #bars").remove();
 
 }
@@ -221,7 +221,7 @@ const mergeSort = (workarry) => {
 
 const addYTick = (section) => {
   $(section).append(`
-  <ul id = 'ticks'></ul>
+  <ul class = 'ticks'></ul>
   <li id = tickplacehold></li>
   `)
 }
@@ -278,8 +278,9 @@ const drawBarChart = (data,  options,  element) => {
   // add variable ticks before bars
   addYTick('#mainbar')
 
-  $("#yaxis #ylabs ").remove();
-  addYTick('#yaxis')
+  removeBars("#ylabs")
+  addYTick('#ylabs')
+  //$("#yaxis .ylabs ").remove();
 
   //Calc tick height
   const numTicks = max/5
@@ -292,8 +293,7 @@ const drawBarChart = (data,  options,  element) => {
   //$('.tick').css('margin', `${tickMargin}% 0% 0%`)
   //$('.tick').css('height',`${tickHeight}%`)
   // Add ticks
-  addYTicks('#ticks',numTicks)
-  addYTicks('#ylabs',numTicks)
+  addYTicks('.ticks',numTicks)
 
   //add Bar container
   addBars(element)
@@ -368,8 +368,11 @@ const drawBarChart = (data,  options,  element) => {
     //console.log($('#tbltitle').text())
 
     //temporary fixes
-    $('.tick').css('margin', `${tickMargin}% 0% 0%`)
+    //$('.tick').css('margin', `${tickMargin}% 0% 0%`)
+    $('.tick').css('margin', `1.016px`)
+
     $('.tick').css('height',`${tickHeight}%`)
+    //$('#ylabs .ticks .tick').css('margin', `1.016px`)
     //$('.tick').css('border-top-width',`${borderHeight}%`)
 
   }
