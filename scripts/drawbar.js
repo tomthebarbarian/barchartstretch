@@ -124,6 +124,7 @@ $(document).ready(() => {
 // function removebars removes all elements
 // from the input section
 const removeBars = (section) => {
+
   $(section + " #bars").remove();
   $(section + " #ticks").remove();
 }
@@ -147,12 +148,12 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
 
   for (let i = 0; i < dataArray.length; i++){
     $(section).append(`
-    <li id = 'currbar${i}'>${dataArray[i]}</li>
+    <li class = bar id = 'currbar${i}'>${dataArray[i]}</li>
     `)
 
     console.log(arrayMax)
     // Set this bar's height relative to max
-    let maxheight = parseInt($('li').css('max-height').substring(0,2))
+    let maxheight = parseInt($('.bar').css('max-height').substring(0,2))
     let height = (dataArray[i] / arrayMax) * (maxheight)
     //console.log(`#currbar${i}`)
     //console.log(`${height}%`)
@@ -160,7 +161,7 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
     // set width in list
   }
   // set all bar widths of list items
-  $(section+' li').css(`width`, `${width}%`)
+  $(section+' .bar').css(`width`, `${width}%`)
 }
 
 // Get max of elem list
@@ -276,14 +277,18 @@ const drawBarChart = (data,  options,  element) => {
   // add variable ticks before bars
   addYTick('#mainbar')
 
+  addYTick('#yaxis')
+
   //Calc tick height
   const numTicks = max/5
   const tickMargin = 0.2
   const tickHeight = (100/numTicks)-tickMargin
   console.log(tickHeight)
 
-  $('.tick').css('height',`${tickHeight}%`)
+  // Why can't I change the css here?
 
+  //$('.tick').css('margin', `${tickMargin}% 0% 0%`)
+  //$('.tick').css('height',`${tickHeight}%`)
   // Add ticks
   addYTicks('#ticks',numTicks)
 

@@ -76,8 +76,27 @@ ul{
 
 }
 
-
+/*
 li{
+  background-color: rgb(221, 224, 212);
+  /*li margin is bar spacing*/
+  /*
+  position: relative;
+  height: 50%;
+  width: 18.8%;
+  max-height: 99%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-right: 2%;
+  margin-bottom: 0;
+  margin-top: 0;
+  opacity: 0.5;
+}
+*/
+
+
+.bar{
   background-color: rgb(221, 224, 212);
   /*li margin is bar spacing*/
   position: relative;
