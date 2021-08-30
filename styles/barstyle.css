@@ -154,12 +154,44 @@ li{
 
 }
 
+#xtitle{
+  position: absolute;
+  height: 50%;
+  width:  100%;
+  top: 50%;
+  margin: 0%;
+
+}
+
+#xlabs{
+  position: absolute;
+  height: 50%;
+  width:  100%;
+  top: 0%;
+}
+
 #yaxis {
   top: 10%;
   position: absolute;
   height: 80%;
   width: 10%;
   background-color: rgb(236, 152, 229)
+}
+
+#ytitle{
+  position: absolute;
+  width:50%;
+  height: 100%;
+}
+
+#ylabs{
+  position: absolute;
+  display: block;
+  width:50%;
+  height: 99%;
+  left:50%;
+  bottom: 0%;
+  align-items: flex-end;
 }
 
 .axis{
