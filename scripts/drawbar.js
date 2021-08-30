@@ -42,7 +42,7 @@ Customizable label colours
 
 
 // Constants
-const barChartDiv =  "#mainBar"
+const barChartDiv =  "#mainbar"
 const allBars = '#bars'
 const singlebar = [1,2,3,4,5]
 
@@ -104,7 +104,7 @@ $(document).ready(() => {
   $("#btn1").click(() => {
     //changeText('#tbltitle')
     //removeBars(allBars)
-    drawBarChart(longArray, optionsExample,  '#mainBar')
+    drawBarChart(longArray, optionsExample,  '#mainbar')
 //    setTimeout(() => {
 //      addBars(barChartDiv)
 //    }, 1000)
@@ -275,9 +275,9 @@ const drawBarChart = (data,  options,  element) => {
   removeBars(element)
 
   // add variable ticks before bars
-  addYTick('#mainBar')
+  addYTick('#mainbar')
 
-  addYTick('#yAxis')
+  addYTick('#yaxis')
 
   //Calc tick height
   const numTicks = max/5
@@ -307,13 +307,13 @@ const drawBarChart = (data,  options,  element) => {
 
   // if main title not visible
   if (options.titleVis === false){
-    $('#tblTitle').css('display','none')
-    //  move yAxis and mainbar
-    $('#mainBar').css('top', '0')
-    $('#mainBar').css('height', '90%')
+    $('#tbltitle').css('display','none')
+    //  move yaxis and mainbar
+    $('#mainbar').css('top', '0')
+    $('#mainbar').css('height', '90%')
 
-    $('#yAxis').css('top', '0')
-    $('#yAxis').css('height', '90%')
+    $('#yaxis').css('top', '0')
+    $('#yaxis').css('height', '90%')
   }
 
 
@@ -362,7 +362,7 @@ const drawBarChart = (data,  options,  element) => {
     $(listItem).css("align-items",options.labPos)
 
     //Bar Main title
-    $('#tblTitle').text(options.title)
+    $('#tbltitle').text(options.title)
     //console.log($('#tbltitle').text())
 
     //temporary fixes
