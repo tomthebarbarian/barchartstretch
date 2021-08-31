@@ -83,7 +83,7 @@ li{
   position: relative;
   height: 50%;
   width: 18.8%;
-  max-height: 99%;
+  max-height: 100%;
   display: flex;
   align-items: center;
   text-align: center;
@@ -100,7 +100,7 @@ li{
   position: relative;
   height: 50%;
   width: 18.8%;
-  max-height: 99%;
+  max-height: 100%;
   display: flex;
   align-items: center;
   text-align: center;
@@ -118,7 +118,7 @@ li{
 
 .maxBar {
   /*placeholding*/
-  height: 99%;
+  height: 100%;
 }
 
 #tickplacehold{
@@ -190,7 +190,6 @@ li{
   height: 80%;
   width: 10%;
   background-color: rgb(236, 152, 229);
-  display:flex;
 }
 
 #ytitle{
@@ -209,7 +208,7 @@ li{
   width:50%;
   height: 100%;
   left:50%;
-  bottom: 0%;
+  bottom: 3%;
   align-items: flex-end;
 }
 

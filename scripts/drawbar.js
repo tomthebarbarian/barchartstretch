@@ -44,7 +44,9 @@ Customizable label colours
 // Constants
 const barChartDiv =  "#mainbar"
 const allBars = '#bars'
-const singlebar = [1,2,3,4,5]
+const singlebar = [1,2,3,4,5,6,7,8,9,15]
+
+const overTenArr = [5,23,6,7,9]
 
 const longArray = [88,55,11, 4,6,3,8,7,34,49]
 
@@ -151,10 +153,12 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
     <li class = bar id = 'currbar${i}'>${dataArray[i]}</li>
     `)
 
-    console.log(arrayMax)
+    //console.log(arrayMax)
     // Set this bar's height relative to max
-    let maxheight = parseInt($('.bar').css('max-height').substring(0,2))
+    let maxheight = parseInt((($('.bar').css('max-height')).split('%'))[0])
+    //console.log(maxheight)
     let height = (dataArray[i] / arrayMax) * (maxheight)
+    //console.log(height)
     //console.log(`#currbar${i}`)
     //console.log(`${height}%`)
     $(`#currbar${i}`).css(`height`, `${height}%`)
@@ -164,7 +168,19 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
   $(section+' .bar').css(`width`, `${width}%`)
 }
 
-// Get max of elem list
+// funciton makeRange takes a start, an end and
+// an step and return an array with the range
+// of integers from start to end inclusive
+const makeRange = (start, end, step) => {
+  ansArr = []
+  for (let i =  start; i <= end; i += step){
+    ansArr.push(i)
+  }
+  return ansArr
+}
+
+// function getArrayMax returns the maximum number
+// of an array
 const getArrayMax = (data) => {
   let maxvalue
   for (let elem of data) {
@@ -235,7 +251,7 @@ const addYTicks = (section, numOfTick) => {
 
   for (let i = 0; i< numOfTick; i++){
     $(section).append(`
-    <li class = tick id = 'currtick${i}'></li>
+    <li class = "tick  currtick${i}"></li>
     `)
   }
 }
@@ -283,10 +299,23 @@ const drawBarChart = (data,  options,  element) => {
   //$("#yaxis .ylabs ").remove();
 
   //Calc tick height
-  const numTicks = max/5
+  let numTicks = max/5
+  let stepper = 5;
+
+  if (numTicks <= 4){
+    numTicks = max-5
+    max = max-5
+    stepper = 1
+  }
+  let ticksArray = []
+
+  ticksArray = makeRange(0, max, stepper)
+
+
+  //Because of how I'm calculating margin?
   const tickMargin = 0.2
   const tickHeight = (100/numTicks)-tickMargin
-  console.log(tickHeight)
+  //console.log(tickHeight)
 
   // Why can't I change the css here?
 
@@ -356,7 +385,7 @@ const drawBarChart = (data,  options,  element) => {
     $(listItem).css("margin-right", options.spacing)
     $('#currbar0').css("margin-left", options.spacing)
     // also sets the max height
-    $(listItem).css("max-height", (100 - 2*parseInt(workingMargin.split('%')[0])).toString(10)+'%')
+    //$(listItem).css("max-height", (100 - 2*parseInt(workingMargin.split('%')[0])).toString(10)+'%')
 
     //console.log($(listItem).css("max-height"))
 
@@ -368,11 +397,16 @@ const drawBarChart = (data,  options,  element) => {
     //console.log($('#tbltitle').text())
 
     //temporary fixes
-    //$('.tick').css('margin', `${tickMargin}% 0% 0%`)
+    //$('.tick').css('margin', `${tickMargin}% 0% 0% 0%`)
     $('.tick').css('margin', `1.016px`)
 
     $('.tick').css('height',`${tickHeight}%`)
-    //$('#ylabs .ticks .tick').css('margin', `1.016px`)
+
+    $(`#ylabs .ticks .tick`).css('background-color','transparent')
+    //adding labels to y ticks
+    for (let i = ticksArray.length-2; i > 0 ;i--){
+      $(`#ylabs .ticks .currtick${ticksArray.length-1 - i}`).text(`${ticksArray[i]}`)
+    }
     //$('.tick').css('border-top-width',`${borderHeight}%`)
 
   }
