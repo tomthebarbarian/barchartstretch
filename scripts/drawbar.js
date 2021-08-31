@@ -150,7 +150,7 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
 
   for (let i = 0; i < dataArray.length; i++){
     $(section).append(`
-    <li class = bar id = 'currbar${i}'>${dataArray[i]}</li>
+    <li class = 'bar currbar${i}'>${dataArray[i]}</li>
     `)
 
     //console.log(arrayMax)
@@ -161,7 +161,7 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
     //console.log(height)
     //console.log(`#currbar${i}`)
     //console.log(`${height}%`)
-    $(`#currbar${i}`).css(`height`, `${height}%`)
+    $(`${section} .currbar${i}`).css(`height`, `${height}%`)
     // set width in list
   }
   // set all bar widths of list items
