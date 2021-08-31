@@ -110,10 +110,11 @@ li{
   opacity: 0.5;
 }
 
-#barplacehold {
+.barplacehold {
   position: absolute;
   left : 0%;
   display: none;
+  background-color: transparent;
 }
 
 .maxBar {
@@ -189,7 +190,7 @@ li{
   position: absolute;
   height: 80%;
   width: 10%;
-  background-color: rgb(236, 152, 229);
+  background-color: rgb(200, 238, 111);
 }
 
 #ytitle{

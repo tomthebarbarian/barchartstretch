@@ -51,7 +51,7 @@ const overTenArr = [5,23,6,7,9]
 const longArray = [88,55,11, 4,6,3,8,7,34,49]
 
 const optionsExample = {
-  colour: 'pink',
+  colour: '#3e13d6',
   // Bar label
   labcolour: 'rgb(135, 169, 219)',
   // barlab pos
@@ -127,7 +127,7 @@ $(document).ready(() => {
 // from the input section
 const removeBars = (section) => {
   $(section + " .ticks").remove();
-  $(section + " #bars").remove();
+  $(section + " .bars").remove();
 
 }
 
@@ -135,8 +135,8 @@ const removeBars = (section) => {
 // with id = 'bars'
 const addBars = (section) => {
   $(section).append(`
-  <ul id = 'bars'></ul>
-  <li id = barplacehold></li>
+  <ul class = 'bars'></ul>
+  <li class = barplacehold></li>
   `)
 }
 
@@ -298,6 +298,8 @@ const drawBarChart = (data,  options,  element) => {
   addYTick('#ylabs')
   //$("#yaxis .ylabs ").remove();
 
+  removeBars('#xlabs')
+  addBars('#xlabs')
   //Calc tick height
   let numTicks = max/5
   let stepper = 5;
@@ -361,9 +363,9 @@ const drawBarChart = (data,  options,  element) => {
     , 2000)
 */
   //don't wait
-    addBarElem('#bars', ordDat, barWidth, max)
+    addBarElem('.bars', ordDat, barWidth, max)
   } else {
-    addBarElem('#bars', data, barWidth, max)
+    addBarElem('.bars', data, barWidth, max)
   }
 
 
@@ -372,7 +374,7 @@ const drawBarChart = (data,  options,  element) => {
 
   // Customising the graph
   if (Object.keys(options).length> 0) {
-    const listItem = '#bars li'
+    const listItem = '.bars li'
 
     // bar colour
     $(listItem).css('background-color', options.colour)
@@ -383,7 +385,7 @@ const drawBarChart = (data,  options,  element) => {
 
     // Bar margin
     $(listItem).css("margin-right", options.spacing)
-    $('#currbar0').css("margin-left", options.spacing)
+    $('.currbar0').css("margin-left", options.spacing)
     // also sets the max height
     //$(listItem).css("max-height", (100 - 2*parseInt(workingMargin.split('%')[0])).toString(10)+'%')
 
@@ -406,6 +408,15 @@ const drawBarChart = (data,  options,  element) => {
     //adding labels to y ticks
     for (let i = ticksArray.length-2; i > 0 ;i--){
       $(`#ylabs .ticks .currtick${ticksArray.length-1 - i}`).text(`${ticksArray[i]}`)
+    }
+    //adjust x labels and adding them
+    $(`#xlabs .bars .bar`).css('height', '100%')
+    $(`#xlabs .bars .bar`).css('background-color','transparent')
+    $(`#xlabs .bars .bar`).css('opacity','1')
+    $(`#xlabs .bars .bar`).css('color','black')
+
+    for (let i = 0; i < data.length; i++){
+      $(`#xlabs .bars .currbar${i}`).text(`${i+1}`)
     }
     //$('.tick').css('border-top-width',`${borderHeight}%`)
 
