@@ -50,6 +50,12 @@ const overTenArr = [5,23,6,7,9]
 
 const longArray = [88,55,11, 4,6,3,8,7,34,49]
 
+const testObj = {
+  1:[88,55,11, 4,6,3,8,7,34,49],
+  2:[21,69,42],
+  3:[29,31,52]
+}
+
 const optionsExample = {
   //bar colors
   colour: '#3e13d6',
@@ -164,9 +170,7 @@ const makeBarStruct = (selector) => {
 }
 
 
-// Do on event, submit? Probably wanna make a function first.
-
-
+// Testing button---------------------------------
 $(document).ready(() => {
   $("#btn1").click(() => {
     //changeText('#tbltitle')
@@ -307,6 +311,23 @@ const addYTick = (section) => {
   `)
 }
 
+// function objMax takes an object of arrays(objArr) of nums
+// and returns an array with the sum of for each array
+// in objArray
+
+// objOf arrayOf num -> arrayOf num
+const objMax = (objArr) => {
+  let ansArr = []
+  const arrKeys = Object.keys(objArr)
+  for (let elem of arrKeys){
+    let ansSum = 0;
+    for (let nums of objArr[elem]){
+      ansSum += nums;
+    }
+    ansArr.push(ansSum)
+  }
+  return ansArr
+}
 
 // function yTicks takes the array of values and adds line
 // represented by borders of list elems
@@ -321,29 +342,40 @@ const addYTicks = (section, numOfTick) => {
   }
 }
 
-// drawBarChart takes an array of numbers(data), a options object(options)
+// drawBarChart takes an array of numbers(data) or an object with arrays, a options object(options)
 // and a selector str(element) and adds a bar graph
 // showing the values of data into element
 
-// arrayOf num, options obj, str -> none
+// arrayOf num || objOf arrayOf num, options obj, str -> none
 // modifies a js element
 const drawBarChart = (data,  options,  element) => {
 
   //append basic structure to the section/page.
   makeBarStruct(element)
 
+  // test if we have an 2 dimensional object or a single array
+  const twoDim = !Array.isArray(data)
+
+
 
   // This is the ordered array, but it's not necessary
   let ordDat
   let max
 
-  //ordDat = mergeSort(data)
+  // If we have an object
+  let sumArr = []
+  if(twoDim){
+    sumArr = objMax(data)
+
+  }
 
 
-
+  //FInd max in array
   if (ordDat){
     max = ordDat[ordDat.length-1]
-  } else {
+  } else if(twoDim){
+
+  }else {
   // just n find max
   //could just go through array for elems
     max = getArrayMax(data)
@@ -491,8 +523,11 @@ const drawBarChart = (data,  options,  element) => {
 
     //temporary fixes
     //$('.tick').css('margin', `${tickMargin}% 0% 0% 0%`)
+    // tick margin/breakboints
     $('.tick').css('margin', `1.016px`)
     $('.tick').css('height',`${tickHeight}%`)
+    //tick size
+    $('.tick').css('font-size','100%')
     $('#bars').css('display',`none`)
 
     $(`#ylabs .ticks .tick`).css('background-color','transparent')
