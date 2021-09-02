@@ -51,6 +51,7 @@ const overTenArr = [5,23,6,7,9]
 const longArray = [88,55,11, 4,6,3,8,7,34,49]
 
 const optionsExample = {
+  //bar colors
   colour: '#3e13d6',
   // Bar label
   labcolour: 'rgb(135, 169, 219)',
@@ -59,10 +60,12 @@ const optionsExample = {
   // align items, flex-end, flex-start, center
 
   // Barchart margins, must be in percent string
-  spacing: '1%',
+  spacing: '1%',//0-7.4% spacing
   // main title
-  title: 'This is the graph main title',
+  title: 'Example Barchart #1',
   titleVis: true, // toggles if there's a main title at all
+  titleCol:'red',
+  titleSize:'200',//between 100 and 200%
   // shoudl affect mainbar and yaxis pos top
 
   //Xlabel
@@ -168,7 +171,7 @@ $(document).ready(() => {
   $("#btn1").click(() => {
     //changeText('#tbltitle')
     //removeBars(allBars)
-    drawBarChart(longArray, optionsExample,  '#mainbar')
+    drawBarChart(longArray, optionsExample,  '#main-content')
 //    setTimeout(() => {
 //      addBars(barChartDiv)
 //    }, 1000)
@@ -354,7 +357,7 @@ const drawBarChart = (data,  options,  element) => {
   let listlen = data.length
 
   // This is about how high the bars should be
-  removeBars(element)
+  removeBars('#mainbar')
 
 
   // add variable ticks before bars
@@ -393,7 +396,7 @@ const drawBarChart = (data,  options,  element) => {
   addYTicks('.ticks',numTicks)
 
   //add Bar container
-  addBars(element)
+  addBars('#mainbar')
 
   // if margin is being changed
   let workingMargin = $("li").css("margin")
@@ -462,29 +465,37 @@ const drawBarChart = (data,  options,  element) => {
 
     //Bar Main title
     $('#tbltitle').text(options.title)
-    //console.log($('#tbltitle').text())
+    $('#tbltitle').css('font-size',options.titleSize)
+    $('#tbltitle').css('color',options.titleCol)
 
-    //temporary fixes
-    //$('.tick').css('margin', `${tickMargin}% 0% 0% 0%`)
-    $('.tick').css('margin', `1.016px`)
-
-    $('.tick').css('height',`${tickHeight}%`)
-
-    $(`#ylabs .ticks .tick`).css('background-color','transparent')
-    //adding labels to y ticks
+        //adding labels to y ticks
     for (let i = ticksArray.length-2; i > 0 ;i--){
       $(`#ylabs .ticks .currtick${ticksArray.length-1 - i}`).text(`${ticksArray[i]}`)
     }
+    //adjust ylabel text
+    $('#ytitle').text(options.ylab)
+
     //adjust x labels and adding them
     $(`#xlabs .bars .bar`).css('height', '100%')
     $(`#xlabs .bars .bar`).css('background-color','transparent')
     $(`#xlabs .bars .bar`).css('opacity','1')
     $(`#xlabs .bars .bar`).css('color','black')
 
+    //xtitle
+    $('#xtitle').text(options.xlab)
+
     for (let i = 0; i < data.length; i++){
       $(`#xlabs .bars .currbar${i}`).text(`${i+1}`)
     }
     //$('.tick').css('border-top-width',`${borderHeight}%`)
+
+    //temporary fixes
+    //$('.tick').css('margin', `${tickMargin}% 0% 0% 0%`)
+    $('.tick').css('margin', `1.016px`)
+    $('.tick').css('height',`${tickHeight}%`)
+    $('#bars').css('display',`none`)
+
+    $(`#ylabs .ticks .tick`).css('background-color','transparent')
 
   }
 
