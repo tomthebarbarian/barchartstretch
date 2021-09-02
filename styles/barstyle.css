@@ -52,7 +52,7 @@ body {
   left: 10%;
   position: absolute;
   height: 80%;
-  width: 90%;
+  width:89.9%;
   background-color: rgba(80, 72, 72, 0.63);
 }
 #tbltitle {
@@ -187,10 +187,10 @@ li{
 
 #xaxis {
   position: absolute;
-  margin-left: 10%;
-  height: 10%;
-  top: 90%;
-  width: 90%;
+  margin-left: 10.1%;
+  height: 9.9%;
+  top: 90.1%;
+  width: 89.9%;
   background-color: rgb(122, 226, 230)
 
 }
