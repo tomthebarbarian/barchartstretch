@@ -62,7 +62,7 @@ const optionsExample = {
   spacing: '1%',
   // main title
   title: 'This is the graph main title',
-  titleVis: false, // toggles if there's a main title at all
+  titleVis: true, // toggles if there's a main title at all
   // shoudl affect mainbar and yaxis pos top
 
   //Xlabel
@@ -95,8 +95,70 @@ function changeText(selector){
   */
 }
 // Dom manipulation.
+// function makeBarStruct takes a html selector str
+// and creates the entire basic structure for makeBarChart
+// in that element
+
+// str -> none
+// effects: adds a bunch of sections and uls to the html element
+const makeBarStruct = (selector) => {
+  //Remove everything first
+  $("#barchart").remove();
 
 
+  $(selector).append(`
+      <section id = 'barchart'>
+        <header >
+          <h2 id = 'tbltitle'>This is the main title of the barchart</h2>
+        </header>
+        <section id = 'mainbar'>
+          <!--<h3 id = 'barplacehold'>This is the main graph section</h3>-->
+          <ul class = 'ticks'>
+            <li class = 'tick'>tick 0</li>
+            <li class = 'tick'>tick 1</li>
+            <li class = 'tick'>tick 2</li>
+            <li class = 'tick'>tick 3</li>
+            <li class = 'tick'>tick 4</li>
+          </ul>
+          <ul id = 'bars'>
+            <!--All these should be length based on max-->
+            <!--max bar, margin right and left-->
+            <li class = 'maxbar'>this is the max bar</li>
+            <li class = 'text test'>98</li>
+            <li>element 2</li>
+            <li>element 3</li>
+            <li id = 'array-elem-n'>there doesn't need to be text here</li>
+          </ul>
+        </section>
+        <aside class = 'axis' id = 'yaxis'>
+          <h4 id = ytitle>Y axis</h4>
+          <section id = 'ylabs'>
+            <ul class = ticks>
+              <li class = 'tick'>tick 0</li>
+              <li class = 'tick'>tick 1</li>
+              <li class = 'tick'>tick 2</li>
+              <li class = 'tick'>tick 3</li>
+              <li class = 'tick'>tick 4</li>
+            </ul>
+          </section>
+        </aside>
+        <footer class = 'axis' id = 'xaxis'>
+          <h4 id = xtitle>X axis</h4>
+          <section id = 'xlabs'>
+            <ul class = 'bars'>
+            <!--All these should be length based on max-->
+            <!--max bar, margin right and left-->
+            <li class = 'maxbar'>this is the max bar</li>
+            <li class = 'text test'>98</li>
+            <li>element 2</li>
+            <li>element 3</li>
+            <li id = 'array-elem-n'>there doesn't need to be text here</li>
+          </ul>
+          </section>
+        </footer>
+      </section>
+  `)
+}
 
 
 // Do on event, submit? Probably wanna make a function first.
@@ -263,6 +325,10 @@ const addYTicks = (section, numOfTick) => {
 // arrayOf num, options obj, str -> none
 // modifies a js element
 const drawBarChart = (data,  options,  element) => {
+
+  //append basic structure to the section/page.
+  makeBarStruct(element)
+
 
   // This is the ordered array, but it's not necessary
   let ordDat
