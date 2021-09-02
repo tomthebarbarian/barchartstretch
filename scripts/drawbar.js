@@ -232,31 +232,49 @@ const addBars = (section) => {
 // function addBarElem adds a list item to a list section
 // also at that time, adds a variable height value
 // based on the value relative to max val
-const addBarElem = (section, dataArray, width, arrayMax) => {
+const addBarElem = (section, dataArray, sumArray, width, arrayMax) => {
 
   for (let i = 0; i < dataArray.length; i++){
-    if (Array.isArray(dataArray[i])){
-      $(section).append(`
-      <li class = 'bar currbar${i}'></li>
-      `)
-    } else {
     $(section).append(`
-    <li class = 'bar currbar${i}'>${dataArray[i]}</li>
+    <li class = 'bar currbar${i}'></li>
     `)
     //console.log(arrayMax)
     // Set this bar's height relative to max
     let maxheight = parseInt((($('.bar').css('max-height')).split('%'))[0])
     //console.log(maxheight)
-    let height = (dataArray[i] / arrayMax) * (maxheight)
+    let height = (sumArray[i] / arrayMax) * (maxheight)
     //console.log(height)
     //console.log(`#currbar${i}`)
     //console.log(`${height}%`)
     $(`${section} .currbar${i}`).css(`height`, `${height}%`)
     // set width in list
+
+    // If element array and not single value
+    if (Array.isArray(dataArray[i])){
+      //add ul subbar
+      let currArr = dataArray[i]
+      $(section + ` .currbar${i}`).append(`
+      <ul class = 'subbars'></li>
+      `)
+      // add to subbars
+      let currBar = section + ` .currbar${i} .subbars`
+      for (let x = 0; x < currArr.length; x++){
+        console.log(currBar)
+        $(currBar).append(`
+          <li class = subbar${x}>${currArr[x]}</li>
+          `)
+        // set sub bar heights
+        let height =
+        $(currBar + `subbar${x}`).css(`height`)
+      }
+      // If single value
+    } else {
+      $('#mainbar ' + section + ` .currbar${i}`).text(`${dataArray[i]}`)
     }
+  }
   // set all bar widths of list items
   $(section+' .bar').css(`width`, `${width}%`)
-  }
+
 }
 
 // funciton makeRange takes a start, an end and
@@ -483,9 +501,9 @@ const drawBarChart = (data,  options,  element) => {
 
   // Add the bars into the bar chart
   if (ordDat) {
-    addBarElem('.bars', ordDat, barWidth, max)
+    addBarElem('.bars', ordDat, dimArray, barWidth, max)
   } else {
-    addBarElem('.bars', data, barWidth, max)
+    addBarElem('.bars', data, dimArray, barWidth, max)
   }
 
 
