@@ -72,12 +72,13 @@ const testObj = {
 */
 
 const twoDimArr = [1,2,[3,4], 10]
+const bigTwoDim = [[88,55,11],[21,69,42],[29,31,52],[4,6,49]]
 
 const optionsExample = {
   //bar colors
-  colour: '#3e13d6',
+  //colour: '#3e13d6',
   // Bar label
-  labcolour: 'rgb(135, 169, 219)',
+  labcolour: 'black',
   // barlab pos
   labPos: 'center',// this should be the llabel position
   // align items, flex-end, flex-start, center
@@ -192,7 +193,7 @@ $(document).ready(() => {
   $("#btn1").click(() => {
     //changeText('#tbltitle')
     //removeBars(allBars)
-    drawBarChart(twoDimArr, optionsExample,  '#main-content')
+    drawBarChart(bigTwoDim, optionsExample,  '#main-content')
 //    setTimeout(() => {
 //      addBars(barChartDiv)
 //    }, 1000)
@@ -261,11 +262,12 @@ const addBarElem = (section, dataArray, sumArray, width, arrayMax) => {
       for (let x = 0; x < currArr.length; x++){
         console.log(currBar)
         $(currBar).append(`
-          <li class = subbar${x}>${currArr[x]}</li>
+          <li class ="subbar subbar${x}">${currArr[x]}</li>
           `)
         // set sub bar heights
-        let height =
-        $(currBar + `subbar${x}`).css(`height`)
+        let subHeight = (currArr[x]/sumArray[i]) * 100
+        console.log(subHeight)
+        $(currBar + ` .subbar${x}`).css(`height`, `${subHeight}%`)
       }
       // If single value
     } else {

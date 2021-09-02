@@ -78,7 +78,7 @@ ul{
 
 
 li{
-  background-color: rgb(221, 224, 212);
+  background-color: rgb(221, 224, 212,0.6);
   /*li margin is bar spacing*/
   position: relative;
   height: 50%;
@@ -90,13 +90,12 @@ li{
   margin-right: 2%;
   margin-bottom: 0;
   margin-top: 0;
-  opacity: 0.5;
 }
 
 
 
 .bar{
-  background-color: rgb(221, 224, 212);
+  background-color: rgb(62, 138, 182,0.6);
   position: relative;
   height: 50%;
   width: 18.8%;
@@ -107,7 +106,7 @@ li{
   margin-right: 2%;
   margin-bottom: 0;
   margin-top: 0;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .barplacehold {
@@ -150,7 +149,9 @@ li{
   text-align: justify;
   align-items: flex-start;
   opacity: 1;
+  background-color: rgb(221, 224, 212);
 }
+
 
 /*
 .notmaxbar {
@@ -158,6 +159,31 @@ li{
 }
 */
 
+.subbars{
+  position: absolute;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  bottom:0%;
+  background-color: transparent;
+}
+
+.subbar{
+  width: 100%;
+}
+
+.subbar0{
+  background-color: rgb(252, 0, 0,0.6);
+}
+.subbar1{
+  background-color: rgb(255, 166, 0, 0.6);
+}
+.subbar2{
+  background-color: rgb(255, 255, 0,0.6);
+}
 
 #xaxis {
   position: absolute;
