@@ -50,11 +50,28 @@ const overTenArr = [5,23,6,7,9]
 
 const longArray = [88,55,11, 4,6,3,8,7,34,49]
 
+// Obj of obj
+/*
 const testObj = {
-  1:[88,55,11, 4,6,3,8,7,34,49],
-  2:[21,69,42],
-  3:[29,31,52]
+  1:{
+    values: [88,55,11]
+  },
+  2:{
+    values: [21,69,42]
+  },
+  3:{
+    values: [29,31,52]
+  },
+  4:{
+    values: [4,6,49]
+  },
+  5:{
+    values: [8,7,34]
+  }
 }
+*/
+
+const twoDimArr = [1,2,[3,4], 10]
 
 const optionsExample = {
   //bar colors
@@ -175,7 +192,7 @@ $(document).ready(() => {
   $("#btn1").click(() => {
     //changeText('#tbltitle')
     //removeBars(allBars)
-    drawBarChart(longArray, optionsExample,  '#main-content')
+    drawBarChart(twoDimArr, optionsExample,  '#main-content')
 //    setTimeout(() => {
 //      addBars(barChartDiv)
 //    }, 1000)
@@ -218,10 +235,14 @@ const addBars = (section) => {
 const addBarElem = (section, dataArray, width, arrayMax) => {
 
   for (let i = 0; i < dataArray.length; i++){
+    if (Array.isArray(dataArray[i])){
+      $(section).append(`
+      <li class = 'bar currbar${i}'></li>
+      `)
+    } else {
     $(section).append(`
     <li class = 'bar currbar${i}'>${dataArray[i]}</li>
     `)
-
     //console.log(arrayMax)
     // Set this bar's height relative to max
     let maxheight = parseInt((($('.bar').css('max-height')).split('%'))[0])
@@ -232,9 +253,10 @@ const addBarElem = (section, dataArray, width, arrayMax) => {
     //console.log(`${height}%`)
     $(`${section} .currbar${i}`).css(`height`, `${height}%`)
     // set width in list
-  }
+    }
   // set all bar widths of list items
   $(section+' .bar').css(`width`, `${width}%`)
+  }
 }
 
 // funciton makeRange takes a start, an end and
@@ -311,20 +333,24 @@ const addYTick = (section) => {
   `)
 }
 
-// function objMax takes an object of arrays(objArr) of nums
+// function sumArrays takes a array of arrays(inArr) of nums
 // and returns an array with the sum of for each array
-// in objArray
+// in inArr
 
-// objOf arrayOf num -> arrayOf num
-const objMax = (objArr) => {
+// arrayOf arrayOf num -> arrayOf num
+const sumArrays = (inArr) => {
   let ansArr = []
-  const arrKeys = Object.keys(objArr)
-  for (let elem of arrKeys){
-    let ansSum = 0;
-    for (let nums of objArr[elem]){
-      ansSum += nums;
+  for (let elem of inArr){
+    if (Array.isArray(elem)){
+      let ansSum = 0;
+      for (let nums of elem){
+        ansSum += nums;
+      }
+      ansArr.push(ansSum)
+    } else {
+      ansArr.push(elem)
     }
-    ansArr.push(ansSum)
+
   }
   return ansArr
 }
@@ -342,9 +368,11 @@ const addYTicks = (section, numOfTick) => {
   }
 }
 
-// drawBarChart takes an array of numbers(data) or an object with arrays, a options object(options)
+// drawBarChart takes an array of numbers(data) or arraysOf nums, a options object(options)
 // and a selector str(element) and adds a bar graph
 // showing the values of data into element
+
+// barchart will stack if an array elem is an array
 
 // arrayOf num || objOf arrayOf num, options obj, str -> none
 // modifies a js element
@@ -354,7 +382,10 @@ const drawBarChart = (data,  options,  element) => {
   makeBarStruct(element)
 
   // test if we have an 2 dimensional object or a single array
-  const twoDim = !Array.isArray(data)
+  // for dat elem
+
+
+  //const twoDim = !Array.isArray(data)
 
 
 
@@ -362,31 +393,25 @@ const drawBarChart = (data,  options,  element) => {
   let ordDat
   let max
 
-  // If we have an object
-  let sumArr = []
-  if(twoDim){
-    sumArr = objMax(data)
+  // us sumArray for bar dimensions
 
-  }
+  let dimArray = sumArrays(data)
 
 
   //FInd max in array
   if (ordDat){
     max = ordDat[ordDat.length-1]
-  } else if(twoDim){
-
-  }else {
-  // just n find max
-  //could just go through array for elems
-    max = getArrayMax(data)
+    // if there is 2 dimensional data
+  } else {
+    max = getArrayMax(dimArray)
   }
 
   // max should be rounded and based on scale tick max
   max = (Math.round(max/5)*5)+5
 
-
+  console.log(max)
   // height calculator
-  let listlen = data.length
+  let listlen = dimArray.length
 
   // This is about how high the bars should be
   removeBars('#mainbar')
@@ -395,12 +420,15 @@ const drawBarChart = (data,  options,  element) => {
   // add variable ticks before bars
   addYTick('#mainbar')
 
+  // add y label holders
   removeBars("#ylabs")
   addYTick('#ylabs')
   //$("#yaxis .ylabs ").remove();
 
+  // Add label holders for xlabels
   removeBars('#xlabs')
   addBars('#xlabs')
+
   //Calc tick height
   let numTicks = max/5
   let stepper = 5;
@@ -453,17 +481,8 @@ const drawBarChart = (data,  options,  element) => {
 
 
 
-
+  // Add the bars into the bar chart
   if (ordDat) {
-  // id bars is set by addbars
-  // wait for removeBars?
-  /*
-  setTimeout(() => {
-    addBarElem('#bars', ordDat, barWidth, max)
-    }
-    , 2000)
-*/
-  //don't wait
     addBarElem('.bars', ordDat, barWidth, max)
   } else {
     addBarElem('.bars', data, barWidth, max)
