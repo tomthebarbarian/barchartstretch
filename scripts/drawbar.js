@@ -74,11 +74,13 @@ const testObj = {
 const twoDimArr = [1,2,[3,4], 10]
 const bigTwoDim = [[88,55,11],[21,69,42],[29,31,52],[4,6,49]]
 
+// should assign during creation.
+
 const optionsExample = {
   //bar colors
-  //colour: '#3e13d6',
+  colour: '#3e13d6',// or list of exact colors for each, same size as data
   // Bar label
-  labcolour: 'black',
+  labcolour: 'black', // or list of exact colors same size as data
   // barlab pos
   labPos: 'center',// this should be the llabel position
   // align items, flex-end, flex-start, center
@@ -193,7 +195,7 @@ $(document).ready(() => {
   $("#btn1").click(() => {
     //changeText('#tbltitle')
     //removeBars(allBars)
-    drawBarChart(bigTwoDim, optionsExample,  '#main-content')
+    drawBarChart(twoDimArr, optionsExample,  '#main-content')
 //    setTimeout(() => {
 //      addBars(barChartDiv)
 //    }, 1000)
@@ -398,6 +400,8 @@ const addYTicks = (section, numOfTick) => {
 // modifies a js element
 const drawBarChart = (data,  options,  element) => {
 
+
+
   //append basic structure to the section/page.
   makeBarStruct(element)
 
@@ -463,6 +467,8 @@ const drawBarChart = (data,  options,  element) => {
   ticksArray = makeRange(0, max, stepper)
 
 
+
+
   //Because of how I'm calculating margin?
   const tickMargin = 0.2
   const tickHeight = (100/numTicks)-tickMargin
@@ -516,9 +522,12 @@ const drawBarChart = (data,  options,  element) => {
   if (Object.keys(options).length> 0) {
     const listItem = '.bars li'
 
-    // bar colour
-    $(listItem).css('background-color', options.colour)
+    // bar colour, exclude subbar
+    $(listItem+ ':not(.subbar)').css('background-color', options.colour)
+    //if has subbar child, transparent
+    $(listItem + ":has(.subbar)").css('background-color','transparent')
     //$(listitem).css('background-color', options.labcolour)
+
 
     // label colour
     $(listItem).css('color', options.labcolour)
