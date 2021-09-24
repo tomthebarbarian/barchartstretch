@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="scripts/drawbar.js"></script>
+    <link rel='stylesheet' href= styles/barstyle.css>
+    <script id = 'barscript'>
+      let data = [2,1,4,3,4,5]
+      //drawBarChart(data, options, '#barchart')
+      // we're going to make doms and backgrounds to make our chart
+      const opt2 = {
+      //bar colors
+        colour: '#3e13d6',
+        labcolour: 'black',
+        labPos: 'center',
+        spacing: '1%',
+        title: 'Example Barchart #1',
+        titleVis: true,
+        titleCol:'red',
+        titleSize:'200',
+        xlab: 'this is x',
+        ylab: 'this is y'
+     }
+     $(document).ready(() => {
+      drawBarChart(data, opt2,  '#main-content')
+    })
+    </script>
+  </head>
+  <body>
+    <main id = 'main-content'></main>
+  </body>
+</html>
