@@ -76,9 +76,18 @@ const bigTwoDim = [[88,55,11],[21,69,42],[29,31,52],[4,6,49]]
 
 // should assign during creation.
 
+const colorArr = [
+  '#a97e00',
+  '#a97e0F',
+  '#a96e00',
+  '#a57e00',
+  '#a17e00',
+ ]
+
 const optionsExample = {
-  //bar colors
-  colour: '#3e13d6',// or list of exact colors for each, same size as data
+  //bar colors// or list of exact colors for each, same size as data
+  // colour: '#3e13d6',
+  colour: colorArr,
   // Bar label
   labcolour: 'black', // or list of exact colors same size as data
   // barlab pos
@@ -98,10 +107,6 @@ const optionsExample = {
   xlab: 'this is x',
   //y label
   ylab: 'this is y',
-
-
-
-
 }
 
 
@@ -193,18 +198,8 @@ const makeBarStruct = (selector) => {
 // Testing button---------------------------------
 $(document).ready(() => {
   $("#btn1").click(() => {
-    //changeText('#tbltitle')
-    //removeBars(allBars)
     drawBarChart(twoDimArr, optionsExample,  '#main-content')
-//    setTimeout(() => {
-//      addBars(barChartDiv)
-//    }, 1000)
   })
-  /*$("#btn1").click(function(){
-    $('.maxbar').text("I've changed the text")
-    //setTimeout($('.maxbar').text("Why so quick"), 5000)
-  })*/
-  //new fn
 });
 
 
@@ -235,21 +230,18 @@ const addBars = (section) => {
 // function addBarElem adds a list item to a list section
 // also at that time, adds a variable height value
 // based on the value relative to max val
-const addBarElem = (section, dataArray, sumArray, width, arrayMax) => {
+const addBarElem = (section, dataArray, sumArray, width, arrayMax, colArr) => {
 
   for (let i = 0; i < dataArray.length; i++){
     $(section).append(`
     <li class = 'bar currbar${i}'></li>
     `)
-    //console.log(arrayMax)
     // Set this bar's height relative to max
     let maxheight = parseInt((($('.bar').css('max-height')).split('%'))[0])
     //console.log(maxheight)
     let height = (sumArray[i] / arrayMax) * (maxheight)
-    //console.log(height)
-    //console.log(`#currbar${i}`)
-    //console.log(`${height}%`)
     $(`${section} .currbar${i}`).css(`height`, `${height}%`)
+
     // set width in list
 
     // If element array and not single value
@@ -274,6 +266,9 @@ const addBarElem = (section, dataArray, sumArray, width, arrayMax) => {
       // If single value
     } else {
       $('#mainbar ' + section + ` .currbar${i}`).text(`${dataArray[i]}`)
+      // colour handlers here too
+      console.log(colArr)
+      $('#mainbar ' + section + ` .currbar${i}`).css('background-color',colArr[i])
     }
   }
   // set all bar widths of list items
@@ -404,20 +399,11 @@ const drawBarChart = (data,  options,  element) => {
 
   //append basic structure to the section/page.
   makeBarStruct(element)
-
-  // test if we have an 2 dimensional object or a single array
-  // for dat elem
-
-
-  //const twoDim = !Array.isArray(data)
-
-
-
   // This is the ordered array, but it's not necessary
   let ordDat
   let max
 
-  // us sumArray for bar dimensions
+  // use sumArray for bar dimensions
 
   let dimArray = sumArrays(data)
 
@@ -433,7 +419,7 @@ const drawBarChart = (data,  options,  element) => {
   // max should be rounded and based on scale tick max
   max = (Math.round(max/5)*5)+5
 
-  console.log(max)
+  // console.log(max)
   // height calculator
   let listlen = dimArray.length
 
@@ -472,7 +458,6 @@ const drawBarChart = (data,  options,  element) => {
   //Because of how I'm calculating margin?
   const tickMargin = 0.2
   const tickHeight = (100/numTicks)-tickMargin
-  //console.log(tickHeight)
 
   // Why can't I change the css here?
 
@@ -509,9 +494,13 @@ const drawBarChart = (data,  options,  element) => {
 
   // Add the bars into the bar chart
   if (ordDat) {
-    addBarElem('.bars', ordDat, dimArray, barWidth, max)
+    console.log('in here2')
+    addBarElem('.bars', ordDat, dimArray, barWidth, max, options.colour )
+
   } else {
-    addBarElem('.bars', data, dimArray, barWidth, max)
+    // console.log('in here')
+    // console.log(options.colour)
+    addBarElem('.bars', data, dimArray, barWidth, max, options.colour)
   }
 
 
@@ -536,9 +525,6 @@ const drawBarChart = (data,  options,  element) => {
     $(listItem).css("margin-right", options.spacing)
     $('.currbar0').css("margin-left", options.spacing)
     // also sets the max height
-    //$(listItem).css("max-height", (100 - 2*parseInt(workingMargin.split('%')[0])).toString(10)+'%')
-
-    //console.log($(listItem).css("max-height"))
 
     // label position in bars
     $(listItem).css("align-items",options.labPos)
@@ -548,7 +534,7 @@ const drawBarChart = (data,  options,  element) => {
     $('#tbltitle').css('font-size',options.titleSize)
     $('#tbltitle').css('color',options.titleCol)
 
-        //adding labels to y ticks
+    //adding labels to y ticks
     for (let i = ticksArray.length-2; i > 0 ;i--){
       $(`#ylabs .ticks .currtick${ticksArray.length-1 - i}`).text(`${ticksArray[i]}`)
     }
@@ -567,11 +553,7 @@ const drawBarChart = (data,  options,  element) => {
     for (let i = 0; i < data.length; i++){
       $(`#xlabs .bars .currbar${i}`).text(`${i+1}`)
     }
-    //$('.tick').css('border-top-width',`${borderHeight}%`)
-
     //temporary fixes
-    //$('.tick').css('margin', `${tickMargin}% 0% 0% 0%`)
-    // tick margin/breakboints
     $('.tick').css('margin', `1.016px`)
     $('.tick').css('height',`${tickHeight}%`)
     //tick size
@@ -584,4 +566,3 @@ const drawBarChart = (data,  options,  element) => {
 
 }
 
-module.exports = drawBarChart;

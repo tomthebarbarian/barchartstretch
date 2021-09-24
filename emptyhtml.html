@@ -6,7 +6,8 @@
     <link rel='stylesheet' href= styles/barstyle.css>
     <script id = 'barscript'>
       let data = [2,1,4,3,4,5]
-      //drawBarChart(data, options, '#barchart')
+      const siglebar = [1,2,3,4,5,6]
+
       // we're going to make doms and backgrounds to make our chart
       const opt2 = {
       //bar colors
@@ -21,8 +22,22 @@
         xlab: 'this is x',
         ylab: 'this is y'
      }
+
+     const opt3 = {
+      colour: colorArr,
+      labcolour: 'black',
+      labPos: 'center',
+      spacing: '1%',
+      title: 'Example Barchart #1',
+      titleVis: true,
+      titleCol:'red',
+      titleSize:'200',
+      xlab: 'this is x',
+      ylab: 'this is y',
+    }
+
      $(document).ready(() => {
-      drawBarChart(data, opt2,  '#main-content')
+      drawBarChart(siglebar, opt3,  '#main-content')
     })
     </script>
   </head>
