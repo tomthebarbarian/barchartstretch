@@ -41,75 +41,6 @@ Customizable label colours
 //Always check to see if the document is ready
 
 
-// Constants
-const barChartDiv =  "#mainbar"
-const allBars = '#bars'
-const singlebar = [1,2,3,4,5,6,7,8,9,15]
-
-const overTenArr = [5,23,6,7,9]
-
-const longArray = [88,55,11, 4,6,3,8,7,34,49]
-
-// Obj of obj
-/*
-const testObj = {
-  1:{
-    values: [88,55,11]
-  },
-  2:{
-    values: [21,69,42]
-  },
-  3:{
-    values: [29,31,52]
-  },
-  4:{
-    values: [4,6,49]
-  },
-  5:{
-    values: [8,7,34]
-  }
-}
-*/
-
-const twoDimArr = [1,2,[3,4], 10]
-const bigTwoDim = [[88,55,11],[21,69,42],[29,31,52],[4,6,49]]
-
-// should assign during creation.
-
-const colorArr = [
-  '#a97e00',
-  '#a97e0F',
-  '#a96e00',
-  '#a57e00',
-  '#a17e00',
- ]
-
-const optionsExample = {
-  //bar colors// or list of exact colors for each, same size as data
-  // colour: '#3e13d6',
-  colour: colorArr,
-  // Bar label
-  labcolour: 'black', // or list of exact colors same size as data
-  // barlab pos
-  labPos: 'center',// this should be the llabel position
-  // align items, flex-end, flex-start, center
-
-  // Barchart margins, must be in percent string
-  spacing: '1%',//0-7.4% spacing
-  // main title
-  title: 'Example Barchart #1',
-  titleVis: true, // toggles if there's a main title at all
-  titleCol:'red',
-  titleSize:'200',//between 100 and 200%
-  // shoudl affect mainbar and yaxis pos top
-
-  //Xlabel
-  xlab: 'this is x',
-  //y label
-  ylab: 'this is y',
-}
-
-
 // event listeners aways need an own function wrapping the
 // other processes
 function changeText(selector){
@@ -117,16 +48,6 @@ function changeText(selector){
   setTimeout(() => {
     $(selector).text(tempstore)}
     , 2000)
-  //$(selector).text("I've changed the text, dw it'll return in 2")
-  //$(selector).text("We're now gonna create the barchart")
-
-
-  // Testing for height changer
-  /*
-  let maxheight = parseInt($('li').css('max-height').substring(0,2))
-  let height = (7 / 25) * (maxheight)
-  $(selector).text(`height: ${height}%`)
-  */
 }
 // Dom manipulation.
 // function makeBarStruct takes a html selector str
@@ -230,7 +151,7 @@ const addBars = (section) => {
 // function addBarElem adds a list item to a list section
 // also at that time, adds a variable height value
 // based on the value relative to max val
-const addBarElem = (section, dataArray, sumArray, width, arrayMax, colArr) => {
+const addBarElem = (section, dataArray, sumArray, width, arrayMax, colArr, labArr) => {
 
   for (let i = 0; i < dataArray.length; i++){
     $(section).append(`
@@ -253,22 +174,27 @@ const addBarElem = (section, dataArray, sumArray, width, arrayMax, colArr) => {
       `)
       // add to subbars
       let currBar = section + ` .currbar${i} .subbars`
+      let currCol = colArr[i]
+      let currlab = labArr[i]
       for (let x = 0; x < currArr.length; x++){
-        console.log(currBar)
+        // console.log(currBar)
         $(currBar).append(`
           <li class ="subbar subbar${x}">${currArr[x]}</li>
           `)
         // set sub bar heights
         let subHeight = (currArr[x]/sumArray[i]) * 100
-        console.log(subHeight)
+        // console.log(subHeight)
         $(currBar + ` .subbar${x}`).css(`height`, `${subHeight}%`)
+        $(currBar + ` .subbar${x}`).css(`background-color`, currCol[x])
+        $(currBar + ` .subbar${x}`).css(`color`, currlab[x])
       }
       // If single value
     } else {
       $('#mainbar ' + section + ` .currbar${i}`).text(`${dataArray[i]}`)
       // colour handlers here too
-      console.log(colArr)
+      // console.log(colArr)
       $('#mainbar ' + section + ` .currbar${i}`).css('background-color',colArr[i])
+      $('#mainbar ' + section + ` .currbar${i}`).css('color',labArr[i])
     }
   }
   // set all bar widths of list items
@@ -495,12 +421,12 @@ const drawBarChart = (data,  options,  element) => {
   // Add the bars into the bar chart
   if (ordDat) {
     console.log('in here2')
-    addBarElem('.bars', ordDat, dimArray, barWidth, max, options.colour )
+    addBarElem('.bars', ordDat, dimArray, barWidth, max, options.colour, options.labcolour)
 
   } else {
     // console.log('in here')
     // console.log(options.colour)
-    addBarElem('.bars', data, dimArray, barWidth, max, options.colour)
+    addBarElem('.bars', data, dimArray, barWidth, max, options.colour, options.labcolour)
   }
 
 
@@ -512,7 +438,9 @@ const drawBarChart = (data,  options,  element) => {
     const listItem = '.bars li'
 
     // bar colour, exclude subbar
+    if (!options.colour.length > 1) {
     $(listItem+ ':not(.subbar)').css('background-color', options.colour)
+    }
     //if has subbar child, transparent
     $(listItem + ":has(.subbar)").css('background-color','transparent')
     //$(listitem).css('background-color', options.labcolour)

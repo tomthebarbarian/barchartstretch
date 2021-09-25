@@ -7,6 +7,85 @@
     <script id = 'barscript'>
       let data = [2,1,4,3,4,5]
       const siglebar = [1,2,3,4,5,6]
+      // Constants
+      const allBars = '#bars'
+      const singlebar = [1,2,3,4,5,6,7,8,9,15]
+
+      const overTenArr = [5,23,6,7,9]
+
+      const longArray = [88,55,11, 4,6,3,8,7,34,49]
+
+      const twoDimArr = [1,2,[3,4], 10]
+      const bigTwoDim = [
+        [88,55,11],
+        [21,69,42],
+        [29,31,52],
+        [4,6,49],
+        [10,20,30,15]
+      ]
+
+      const labelArry = [
+        ['#a00e00',
+        '#a0fe01',
+        '#a00e0f'],
+        ['#a00e00',
+        '#a0fe01',
+        '#a00e0f'],
+        ['#a00e00',
+        '#a0fe01',
+        '#a00e0f'],
+        ['#a00e05',
+        '#a90e0F',
+        '#a9FeFF'],
+        ['#a00e05',
+        '#a90e0F',
+        '#a9FeFF',
+        '#a9Fe00'],
+      ]
+      // should assign during creation.
+
+      const colorArr = [
+        ['#a97e00',
+        '#a97e0F',
+        '#a96e00'],
+        ['#a97e00',
+        '#a97e0F',
+        '#a96e00'],
+        ['#a97e00',
+        '#a97e0F',
+        '#a96e00'],
+        ['#a57e00',
+        '#a17e00',
+        '#a17eF0'],
+        ['#a57e00',
+        '#a1fe00',
+        '#a17f00'],
+      ]
+
+      const optionsExample = {
+      //bar colors// or list of exact colors for each, same size as data
+      // colour: '#3e13d6',
+      colour: colorArr,
+      // Bar label
+      labcolour: 'black', // or list of exact colors same size as data
+      // barlab pos
+      labPos: 'center',// this should be the llabel position
+      // align items, flex-end, flex-start, center
+
+      // Barchart margins, must be in percent string
+      spacing: '1%',//0-7.4% spacing
+      // main title
+      title: 'Example Barchart #1',
+      titleVis: true, // toggles if there's a main title at all
+      titleCol:'red',
+      titleSize:'200',//between 100 and 200%
+      // shoudl affect mainbar and yaxis pos top
+
+      //Xlabel
+      xlab: 'this is x',
+      //y label
+      ylab: 'this is y',
+    }
 
       // we're going to make doms and backgrounds to make our chart
       const opt2 = {
@@ -25,7 +104,7 @@
 
      const opt3 = {
       colour: colorArr,
-      labcolour: 'black',
+      labcolour: labelArry,
       labPos: 'center',
       spacing: '1%',
       title: 'Example Barchart #1',
@@ -36,8 +115,9 @@
       ylab: 'this is y',
     }
 
+
      $(document).ready(() => {
-      drawBarChart(siglebar, opt3,  '#main-content')
+      drawBarChart(bigTwoDim, opt2,  '#main-content')
     })
     </script>
   </head>

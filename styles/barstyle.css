@@ -184,6 +184,9 @@ li{
 .subbar2{
   background-color: rgb(255, 255, 0,0.6);
 }
+.subbar3{
+  background-color: rgba(160, 184, 38, 0.6);
+}
 
 #xaxis {
   position: absolute;
